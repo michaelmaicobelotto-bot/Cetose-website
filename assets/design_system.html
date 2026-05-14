@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Cetose Consiente - Design System</title>
+
+    <!-- External Assets (Assumes they are in the same folder /assets) -->
+    <script src="resource_3fa48481346f.es"></script>
+    <script src="lucide_latest_2eebd0ebe8c2.es"></script>
+    <script src="iconify_654a1ef798a3.js"></script>
+    <script src="iconify-icon_e19829e7f0e8.js"></script>
+    
+    <link href="css2_19fd9cc6b396.css" rel="stylesheet"/>
+    <link href="css2_86e10c4bcbd4.css" rel="stylesheet"/>
+    <link href="css2_0fc20595ebff.css" rel="stylesheet"/>
+    <link href="css2_23afcbef9bdd.css" rel="stylesheet"/>
+    <link href="css2_82ced711bf49.css" rel="stylesheet"/>
+    <link href="css2_fa22aa91016e.css" rel="stylesheet"/>
+    <link href="css2_2b2d87bc82d8.css" rel="stylesheet"/>
+    <link href="css2_4fef849c83da.css" rel="stylesheet"/>
+    <link href="css2_a7b22b336fe1.css" rel="stylesheet"/>
+    <link href="css2_0b2072b66163.css" rel="stylesheet"/>
+    <link href="css2_9b8bf743d4a8.css" rel="stylesheet"/>
+    <link href="css2_8e191ef32247.css" rel="stylesheet"/>
+    <link href="css2_70fd47a02eed.css" rel="stylesheet"/>
+    <link href="css2_b52fc18295f8.css" rel="stylesheet"/>
+    <link href="css2_62759cd015bd.css" rel="stylesheet"/>
+    <link href="css2_f495c2faa2a6.css" rel="stylesheet"/>
+    <link href="css2_6f16cdd6fd9f.css" rel="stylesheet"/>
+    <link href="css2_94cb6f0c406a.css" rel="stylesheet"/>
+    <link href="css2_6c160a0c4e6f.css" rel="stylesheet"/>
+    <link href="css2_bd407d5ceb4b.css" rel="stylesheet"/>
+    <link href="css2_176e25227b5e.css" rel="stylesheet"/>
+    <link href="css2_e5ca562f8909.css" rel="stylesheet"/>
+    <link href="css2_bd311904ea29.css" rel="stylesheet"/>
+    <link href="css2_d532a689d235.css" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: {
+                        400: '#34d399', // Emerald 400
+                        500: '#10b981', // Emerald 500
+                        600: '#059669', // Emerald 600
+                        700: '#047857', // Emerald 700
+                    },
+                    darkGray: {
+                        50: '#06110f', // Very dark green-tinted black
+                        100: '#0b1c19', // Slightly lighter
+                    }
+                },
+                fontFamily: {
+                    manrope: ["Manrope", "sans-serif"],
+                    sans: ["Inter", "sans-serif"],
+                    mono: ["Geist Mono", "monospace"]
+                }
+            }
+        }
+    };
+    </script>
+
+    <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-manrope { font-family: 'Manrope', sans-serif !important; }
+    
+    /* Animation Keyframes */
+    @keyframes fadeSlideIn {
+        0% { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+        100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+    }
+    
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .animate-marquee { animation: marquee 40s linear infinite; }
+    
+    @keyframes shimmer {
+        from { transform: translateX(-100%) skewX(-15deg); }
+        to { transform: translateX(200%) skewX(-15deg); }
+    }
+    
+    .animate-on-scroll { animation-play-state: paused !important; }
+    .animate-on-scroll.animate { animation-play-state: running !important; }
+
+    /* Flashlight Effect */
+    .flashlight-card { background: rgba(255, 255, 255, 0.01); }
+    .flashlight-card::before {
+        content: "";
+        position: absolute;
+        inset: 0px;
+        background: radial-gradient(
+            800px circle at var(--mouse-x) var(--mouse-y),
+            rgba(52, 211, 153, 0.08), /* emerald-400 */
+            transparent 40%
+        );
+        opacity: 0;
+        transition: opacity 0.5s;
+        pointer-events: none;
+        z-index: 2;
+    }
+    .flashlight-card:hover::before { opacity: 1; }
+
+    /* Progressive Blur CSS */
+    .gradient-blur {
+        position: fixed;
+        z-index: 5;
+        inset: 0 0 auto 0;
+        height: 12%;
+        pointer-events: none;
+    }
+    .gradient-blur>div, .gradient-blur::before, .gradient-blur::after { position: absolute; inset: 0; }
+    .gradient-blur::before { content: ""; z-index: 1; backdrop-filter: blur(0.5px); mask: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 0) 37.5%); }
+    .gradient-blur>div:nth-of-type(1) { z-index: 2; backdrop-filter: blur(1px); mask: linear-gradient(to top, rgba(0, 0, 0, 0) 12.5%, rgba(0, 0, 0, 1) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 0) 50%); }
+    .gradient-blur>div:nth-of-type(2) { z-index: 3; backdrop-filter: blur(2px); mask: linear-gradient(to top, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 1) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 62.5%); }
+    .gradient-blur>div:nth-of-type(3) { z-index: 4; backdrop-filter: blur(4px); mask: linear-gradient(to top, rgba(0, 0, 0, 0) 37.5%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 0) 75%); }
+    .gradient-blur>div:nth-of-type(4) { z-index: 5; backdrop-filter: blur(8px); mask: linear-gradient(to top, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 87.5%); }
+    .gradient-blur>div:nth-of-type(5) { z-index: 6; backdrop-filter: blur(16px); mask: linear-gradient(to top, rgba(0, 0, 0, 0) 62.5%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 0) 100%); }
+    .gradient-blur>div:nth-of-type(6) { z-index: 7; backdrop-filter: blur(32px); mask: linear-gradient(to top, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 1) 87.5%, rgba(0, 0, 0, 1) 100%); }
+    .gradient-blur::after { content: ""; z-index: 8; backdrop-filter: blur(64px); mask: linear-gradient(to top, rgba(0, 0, 0, 0) 87.5%, rgba(0, 0, 0, 1) 100%); }
+
+    /* Animated Shiny CTA Button Styles */
+    @property --gradient-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+    @property --gradient-angle-offset { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+    @property --gradient-percent { syntax: "<percentage>"; initial-value: 20%; inherits: false; }
+    @property --gradient-shine { syntax: "<color>"; initial-value: #10b981; inherits: false; }
+    .shiny-cta {
+        --gradient-angle: 0deg;
+        --gradient-angle-offset: 0deg;
+        --gradient-percent: 20%;
+        --gradient-shine: #10b981;
+        position: relative;
+        overflow: hidden;
+        border-radius: 9999px;
+        padding: 1.25rem 3rem;
+        font-size: 1.125rem;
+        line-height: 1.2;
+        font-weight: 500;
+        color: #ffffff;
+        background: linear-gradient(#000000, #000000) padding-box,
+        conic-gradient(from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+        transparent 0%, #10b981 5%, var(--gradient-shine) 15%, #10b981 30%, transparent 40%, transparent 100%) border-box;
+        border: 2px solid transparent;
+        box-shadow: inset 0 0 0 1px #06110f;
+        outline: none;
+        transition: --gradient-angle-offset 800ms cubic-bezier(0.25, 1, 0.5, 1), --gradient-percent 800ms cubic-bezier(0.25, 1, 0.5, 1), --gradient-shine 800ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s;
+        cursor: pointer;
+        isolation: isolate;
+        outline-offset: 4px;
+        z-index: 0;
+        animation: border-spin 2.5s linear infinite;
+    }
+    @keyframes border-spin { to { --gradient-angle: 360deg; } }
+    .shiny-cta:active { transform: translateY(1px); }
+    .shiny-cta::before {
+        content: '';
+        pointer-events: none;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        --size: calc(100% - 6px);
+        --position: 2px;
+        --space: 4px;
+        width: var(--size);
+        height: var(--size);
+        background: radial-gradient(circle at var(--position) var(--position), white 0.5px, transparent 0) padding-box;
+        background-size: var(--space) var(--space);
+        background-repeat: space;
+        mask-image: conic-gradient(from calc(var(--gradient-angle) + 45deg), black, transparent 10% 90%, black);
+        border-radius: inherit;
+        opacity: 0.4;
+    }
+    .shiny-cta::after {
+        content: '';
+        pointer-events: none;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 100%;
+        aspect-ratio: 1;
+        background: linear-gradient(-50deg, transparent, #10b981, transparent);
+        mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+        opacity: 0.6;
+        animation: shimmer-spin 4s linear infinite;
+    }
+    .shiny-cta span { position: relative; z-index: 2; display: inline-block; }
+    .shiny-cta span::before {
+        content: '';
+        pointer-events: none;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        --size: calc(100% + 1rem);
+        width: var(--size);
+        height: var(--size);
+        box-shadow: inset 0 -1ex 2rem 4px #10b981;
+        opacity: 0;
+        border-radius: inherit;
+        transition: opacity 800ms cubic-bezier(0.25, 1, 0.5, 1);
+        animation: breathe 4.5s linear infinite;
+    }
+    @keyframes shimmer-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+    @keyframes breathe {
+        0%, 100% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.20); }
+    }
+    
+    [style*="--border-gradient"]::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        border-radius: var(--border-radius-before, inherit);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        background: var(--border-gradient);
+        pointer-events: none;
+    }
+
+    html, body {
+        overflow-x: hidden !important;
+        scroll-behavior: smooth !important;
+    }
+    .anchor-offset {
+        scroll-margin-top: 100px;
+    }
+    </style>
+
+    <script>
+    (function () {
+        const once = true;
+        if (!window.__inViewIO) {
+            window.__inViewIO = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animate");
+                        if (once) window.__inViewIO.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -5% 0px" });
+        }
+        window.initInViewAnimations = function (selector = ".animate-on-scroll") {
+            document.querySelectorAll(selector).forEach((el) => {
+                window.__inViewIO.observe(el);
+            });
+        };
+        document.addEventListener("DOMContentLoaded", () => initInViewAnimations());
+    })();
+    </script>
+</head>
+
+<body class="antialiased selection:bg-emerald-600/30 selection:text-emerald-200 text-white bg-black">
+
+    <!-- Background -->
+    <div class="aura-background-component -z-10 w-full top-0 absolute h-[900px]" data-alpha-mask="80" style="mask-image: linear-gradient(transparent, black 0%, black 80%, transparent);">
+        <div class="aura-background-component top-0 w-full -z-10 absolute h-full">
+            <div class="absolute w-full h-full left-0 top-0 -z-10" data-us-project="sajpUiTp7MIKdX6daDCu"></div>
+            <script type="text/javascript">
+            !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+            </script>
+        </div>
+    </div>
+    
+    <!-- Progressive Blur Top -->
+    <div class="gradient-blur" style="height: 120px;">
+        <div class=""></div><div class=""></div><div class=""></div><div class=""></div><div class=""></div><div class=""></div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="fixed flex [animation:fadeSlideIn_1s_ease-out_1s_both] w-full z-50 pt-6 pr-4 pl-4 top-0 left-0 justify-center">
+        <nav class="shadow-black/50 flex md:gap-12 md:w-auto bg-black/60 w-full max-w-5xl rounded-none pt-2 pr-2 pb-2 pl-3 shadow-2xl backdrop-blur-lg gap-x-8 gap-y-8 items-center justify-between" style="position: relative; --border-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.2)); --border-radius-before: 0">
+            <div class="flex gap-2 shrink-0 gap-x-2 gap-y-2 items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                <div class="grid grid-cols-2 opacity-90 w-6 h-6 gap-x-1 gap-y-1">
+                    <div class="bg-[#10b981] w-full h-full rounded-sm"></div>
+                    <div class="w-full h-full bg-zinc-700 rounded-sm [animation:fadeSlideIn_1s_ease-out_0.3s_both] animate-on-scroll animate"></div>
+                    <div class="w-full h-full bg-zinc-800 rounded-sm"></div>
+                    <div class="w-full h-full bg-white rounded-sm shadow-[0_0_10px_rgba(255,255,255,0.4)]"></div>
+                </div>
+                <span class="text-xl font-bold text-white tracking-tight font-manrope">Cetose Consiente</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6">
+                <a class="group hover:text-white transition-colors text-sm font-medium text-gray-400 font-sans pt-1 pb-1 relative" href="#typography">
+                    Typography
+                    <span class="absolute -bottom-3 left-1/2 w-0 h-[1px] bg-gradient-to-r from-transparent via-[#10b981] to-transparent group-hover:w-full group-hover:opacity-100 transition-all duration-300 ease-out -translate-x-1/2 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
+                </a>
+                <a class="group hover:text-white transition-colors text-sm font-medium text-gray-400 font-sans py-1 relative" href="#colors">
+                    Colors
+                    <span class="absolute -bottom-3 left-1/2 w-0 h-[1px] bg-gradient-to-r from-transparent via-[#10b981] to-transparent group-hover:w-full group-hover:opacity-100 transition-all duration-300 ease-out -translate-x-1/2 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
+                </a>
+                <a class="group hover:text-white transition-colors text-sm font-medium text-gray-400 font-sans py-1 relative" href="#components">
+                    Components
+                    <span class="absolute -bottom-3 left-1/2 w-0 h-[1px] bg-gradient-to-r from-transparent via-[#10b981] to-transparent group-hover:w-full group-hover:opacity-100 transition-all duration-300 ease-out -translate-x-1/2 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
+                </a>
+                <a class="group hover:text-white transition-colors text-sm font-medium text-gray-400 font-sans pt-1 pb-1 relative" href="#icons">Icons</a>
+                <a class="group hover:text-white transition-colors text-sm font-medium text-gray-400 font-sans pt-1 pb-1 relative" href="#motion">Motion</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 0) HERO SECTION -->
+    <section id="hero" class="h-auto min-h-[900px] flex flex-col md:pt-20 overflow-hidden w-full pt-32 relative items-center justify-start" style="mask-image: linear-gradient(180deg, transparent, black 0%, black 95%, transparent); -webkit-mask-image: linear-gradient(180deg, transparent, black 0%, black 95%, transparent);">
+        <div class="z-10 text-center max-w-5xl mt-24 mr-auto mb-12 ml-auto pr-6 pl-6 relative">
+            <!-- Badge -->
+            <div class="[animation:fadeSlideIn_1s_ease-out_0.8s_both] inline-flex transition-transform hover:scale-105 cursor-pointer group animate bg-gradient-to-br from-white/10 to-white/0 bg-gradient-to-b from-white/20 via-white/0 to-white/10 rounded-full mb-10 pt-1.5 pr-3 pb-1.5 pl-3 backdrop-blur-sm gap-x-2 gap-y-2 items-center" style="position: relative; --border-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1)); --border-radius-before: 9999px">
+                <span class="flex h-1.5 w-1.5 rounded-full group-hover:animate-pulse bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
+                <span class="text-xs font-medium tracking-wide group-hover:text-white transition-colors font-sans text-emerald-100/80">
+                    Cetose Consiente
+                </span>
+            </div>
+            
+            <!-- Heading -->
+            <h1 class="[animation:fadeSlideIn_1s_ease-out_1s_both] animate flex flex-col items-center justify-center gap-y-4 leading-[1.1] md:text-7xl cursor-default text-5xl font-medium tracking-tighter font-manrope mb-8">
+                <span class="inline-blox leading-[1.1] bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50 opacity-100">
+                    Toda segunda você recomeça com tudo.
+                </span>
+                <span class="inline-blox leading-[1.1] bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50 opacity-70">
+                    Toda noite a fome destrói tudo de novo.
+                </span>
+                <span class="inline-blox leading-[1.1] bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50 opacity-50 text-3xl md:text-4xl mt-6">
+                    Isso não é falta de força de vontade — é o seu corpo usando o combustível errado.
+                </span>
+            </h1>
+            
+            <!-- Subtext -->
+            <p class="[animation:fadeSlideIn_1s_ease-out_1.2s_both] leading-relaxed md:text-xl animate text-lg font-medium text-gray-400 tracking-normal font-sans max-w-4xl mr-auto mb-12 ml-auto">
+                O vídeo abaixo revela o mecanismo que nenhuma dieta te contou: por que você sente fome incontrolável, por que a dieta sempre quebra à noite — e o que muda quando você corrige esse erro.
+            </p>
+            
+            <!-- Animated Shiny CTA Button -->
+            <div class="[animation:fadeSlideIn_1s_ease-out_1.4s_both] flex flex-col md:flex-row animate mb-12 gap-6 items-center justify-center">
+                <!-- Beam Shimmer Button -->
+                <div class="group relative scale-100 hover:scale-105 transition-all duration-300">
+                    <div class="-inset-2 group-hover:opacity-100 transition duration-500 bg-emerald-600/30 opacity-0 rounded-full absolute blur-xl"></div>
+                    <div class="absolute -inset-[1px] rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] h-[300%] bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] animate-[spin_2s_linear_infinite]"></div>
+                    </div>
+                    <button class="group relative z-10 flex items-center justify-center overflow-hidden rounded-full p-[1px] leading-none cursor-pointer">
+                        <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#10b981_360deg)]"></span>
+                        <span class="relative flex h-[60px] w-full items-center rounded-full bg-black pt-4 pr-10 pb-4 pl-10 ring-1 ring-white/10">
+                            <span class="absolute inset-0 overflow-hidden rounded-full">
+                                <span class="absolute top-0 left-0 h-full w-full -skew-x-12 bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent opacity-0 group-hover:animate-[shimmer_1.5s_infinite] group-hover:opacity-100"></span>
+                            </span>
+                            <span class="relative z-10 flex items-center">
+                                <span class="text-sm font-bold tracking-widest text-white uppercase">Quero entender o que está me sabotando</span>
+                            </span>
+                            <span class="relative z-10 ml-4 flex items-center text-emerald-500 transition duration-200 group-hover:translate-x-1 group-hover:text-white">
+                                <iconify-icon class="text-2xl" icon="solar:arrow-right-bold-duotone"></iconify-icon>
+                            </span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Video Placeholder/Glow Card -->
+            <div class="[animation:fadeSlideIn_1s_ease-out_1.6s_both] relative max-w-4xl mx-auto rounded-2xl p-[1px] overflow-hidden group mt-16 shadow-2xl">
+                <span class="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#10b981_100%)] opacity-30 group-hover:opacity-100 transition-opacity duration-700"></span>
+                <div class="relative bg-zinc-950 rounded-2xl overflow-hidden aspect-video flex items-center justify-center border border-white/5 group-hover:border-transparent transition-colors">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#059669]/20 to-transparent opacity-50"></div>
+                    <iconify-icon icon="solar:play-circle-bold-duotone" class="text-7xl text-emerald-500/80 group-hover:scale-110 group-hover:text-emerald-400 transition-all duration-500 relative z-10 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)] cursor-pointer"></iconify-icon>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1) TYPOGRAPHY -->
+    <section id="typography" class="anchor-offset max-w-7xl mx-auto px-6 py-24 border-t border-zinc-900 mt-20">
+        <h2 class="text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold mb-12">[ 01. Typography ]</h2>
+        
+        <div class="space-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-baseline border-b border-zinc-900 pb-8 animate-on-scroll">
+                <div class="text-zinc-500 font-mono text-xs uppercase">Heading 1</div>
+                <div class="md:col-span-3">
+                    <h1 class="text-6xl md:text-8xl font-medium tracking-tighter font-manrope leading-[1.1] bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50">
+                        Design System
+                    </h1>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-baseline border-b border-zinc-900 pb-8 animate-on-scroll delay-100">
+                <div class="text-zinc-500 font-mono text-xs uppercase">Heading 2</div>
+                <div class="md:col-span-3">
+                    <h2 class="md:text-6xl text-5xl font-medium tracking-tighter font-manrope bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+                        Real Products
+                    </h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-baseline border-b border-zinc-900 pb-8 animate-on-scroll delay-200">
+                <div class="text-zinc-500 font-mono text-xs uppercase">Heading 3</div>
+                <div class="md:col-span-3">
+                    <h3 class="text-white font-manrope text-2xl font-semibold tracking-tight uppercase">
+                        Neon Nexus
+                    </h3>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-baseline border-b border-zinc-900 pb-8 animate-on-scroll delay-300">
+                <div class="text-zinc-500 font-mono text-xs uppercase">Paragraph (L)</div>
+                <div class="md:col-span-3">
+                    <p class="leading-relaxed md:text-2xl text-xl font-medium text-gray-400 tracking-normal font-sans">
+                        Crafting digital experiences that merge art and technology. From branding to web development, I build it all.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-baseline border-b border-zinc-900 pb-8 animate-on-scroll delay-400">
+                <div class="text-zinc-500 font-mono text-xs uppercase">Tags / Labels</div>
+                <div class="md:col-span-3 flex flex-wrap gap-3">
+                    <span class="text-[10px] px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white tracking-widest uppercase font-mono">Default Tag</span>
+                    <span class="text-[10px] px-3 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 tracking-widest uppercase font-mono">Success Tag</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2) COLORS & SURFACES -->
+    <section id="colors" class="anchor-offset max-w-7xl mx-auto px-6 py-24 border-t border-zinc-900">
+        <h2 class="text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold mb-12">[ 02. Colors & Surfaces ]</h2>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 animate-on-scroll">
+            <div class="space-y-3">
+                <div class="h-24 w-full bg-[#10b981] rounded-2xl border border-zinc-800"></div>
+                <div class="flex justify-between text-xs font-mono">
+                    <span class="text-white">Emerald 500</span>
+                    <span class="text-zinc-500">#10b981</span>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="h-24 w-full bg-[#059669] rounded-2xl border border-zinc-800"></div>
+                <div class="flex justify-between text-xs font-mono">
+                    <span class="text-white">Emerald 600</span>
+                    <span class="text-zinc-500">#059669</span>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="h-24 w-full bg-[#34d399] rounded-2xl border border-zinc-800"></div>
+                <div class="flex justify-between text-xs font-mono">
+                    <span class="text-white">Emerald 400</span>
+                    <span class="text-zinc-500">#34d399</span>
+                </div>
+            </div>
+            
+             <div class="space-y-3">
+                <div class="h-24 w-full bg-black rounded-2xl border border-zinc-800"></div>
+                <div class="flex justify-between text-xs font-mono">
+                    <span class="text-white">Background</span>
+                    <span class="text-zinc-500">#000000</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16">
+            <h3 class="text-xs font-mono text-zinc-500 mb-6 uppercase">Gradients & Surfaces</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 animate-on-scroll delay-200">
+                <div class="h-40 w-full rounded-2xl border border-zinc-800 bg-gradient-to-b from-white via-white to-white/50 flex items-center justify-center p-6 text-center">
+                    <span class="text-black font-medium font-sans">Text Gradient (White Fade)</span>
+                </div>
+                
+                <div class="h-40 w-full rounded-2xl border border-zinc-800 flex items-center justify-center relative overflow-hidden bg-black p-6 text-center group">
+                     <span class="absolute inset-0 bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#10b981_100%)] animate-[spin_3s_linear_infinite] opacity-50 group-hover:opacity-100 transition-opacity"></span>
+                     <div class="absolute inset-[1px] bg-black z-10 rounded-2xl"></div>
+                     <span class="relative z-20 text-white font-medium font-sans">Beam Gradient Hover</span>
+                </div>
+                
+                <div class="h-40 w-full rounded-2xl border border-white/10 bg-gradient-to-r from-white/10 to-white/0 backdrop-blur-md flex items-center justify-center p-6 text-center shadow-lg" style="--border-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)); --border-radius-before: 1rem">
+                    <span class="text-white font-medium font-sans relative z-10">Glass Surface</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3) UI COMPONENTS -->
+    <section id="components" class="anchor-offset max-w-7xl mx-auto px-6 py-24 border-t border-zinc-900">
+        <h2 class="text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold mb-12">[ 03. UI Components ]</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Buttons -->
+            <div class="space-y-8 animate-on-scroll">
+                <h3 class="text-white font-manrope text-2xl tracking-tight">Interactive Elements</h3>
+                
+                <!-- Shiny CTA -->
+                <div class="p-8 rounded-2xl border border-white/5 bg-gradient-to-b from-white/5 to-transparent flex flex-col gap-6 items-start backdrop-blur-sm">
+                     <button class="shiny-cta">
+                         <span>Shiny Action</span>
+                     </button>
+                    <p class="text-xs text-zinc-500 font-mono">Animated Gradient Border Button</p>
+                </div>
+
+                <!-- Ghost/Beam Button -->
+                 <div class="p-8 rounded-2xl border border-white/5 bg-gradient-to-b from-white/5 to-transparent flex flex-col gap-6 items-start backdrop-blur-sm">
+                    <button class="group relative inline-flex min-w-[180px] h-[50px] items-center justify-center overflow-hidden rounded-full outline-none cursor-pointer transition-transform active:scale-95" style="background-color: rgba(255, 255, 255, 0.05);" type="button">
+                        <span class="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#10b981_100%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                        <span class="absolute inset-[1px] rounded-full bg-black z-10"></span>
+                        <span class="absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-10" style="background: radial-gradient(50% 50% at 50% 100%, rgba(16, 185, 129, 0.2) 0%, transparent 100%);"></span>
+                        <span class="relative z-20 flex items-center justify-center gap-2 text-xs font-medium text-white tracking-wide uppercase">
+                            <span>Secondary CTA</span>
+                        </span>
+                    </button>
+                    <p class="text-xs text-zinc-500 font-mono">Secondary Pill with Beam on Hover</p>
+                 </div>
+                 
+                 <!-- Inputs -->
+                 <div class="p-8 rounded-2xl border border-white/5 bg-gradient-to-b from-white/5 to-transparent flex flex-col gap-6 items-start backdrop-blur-sm w-full">
+                     <div class="group relative w-full">
+                         <input class="peer w-full bg-transparent border-b border-white/20 py-3 text-white placeholder-transparent focus:border-[#10b981] focus:outline-none transition-colors font-sans text-lg" id="demo-name" placeholder="Name" type="text"/>
+                         <label class="absolute left-0 -top-5 text-xs text-zinc-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-400 peer-placeholder-shown:top-3 peer-focus:-top-5 peer-focus:text-[10px] peer-focus:text-[#10b981] font-sans uppercase tracking-wider font-medium" for="demo-name">Your Name</label>
+                     </div>
+                     <p class="text-xs text-zinc-500 font-mono mt-4">Floating Label Input</p>
+                 </div>
+            </div>
+
+            <!-- Cards -->
+            <div class="space-y-8 animate-on-scroll delay-200">
+                <h3 class="text-white font-manrope text-2xl tracking-tight">Cards & Panels</h3>
+                
+                 <!-- Flashlight Card -->
+                 <div class="flashlight-card w-full h-[280px] bg-neutral-900/40 border border-white/10 rounded-2xl p-8 flex flex-col justify-end group overflow-hidden relative backdrop-blur-md" onmousemove="const rect = this.getBoundingClientRect(); this.style.setProperty('--mouse-x', `${event.clientX - rect.left}px`); this.style.setProperty('--mouse-y', `${event.clientY - rect.top}px`);">
+                    <iconify-icon class="text-4xl text-neutral-500 mb-4 group-hover:text-emerald-400 transition-colors duration-500" icon="solar:layers-minimalistic-bold-duotone"></iconify-icon>
+                    <h4 class="text-2xl text-white font-manrope font-semibold tracking-tight mb-2">Interactive Panel</h4>
+                    <p class="text-sm text-neutral-400 font-sans">Hover over this card to reveal the flashlight effect tracing your cursor with a soft emerald glow.</p>
+                </div>
+
+                <!-- Status Card -->
+                 <div class="bg-black border border-zinc-800 border-dashed relative p-8 flex flex-col justify-between group hover:border-[#10b981]/50 transition-all duration-500 rounded-2xl overflow-hidden">
+                    <div class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#10b981] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#10b981] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#10b981] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <div class="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#10b981] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    
+                    <div class="flex items-center justify-between border-b border-zinc-800 pb-4 border-dashed mb-6">
+                        <span class="font-mono text-[10px] text-[#10b981] tracking-widest uppercase font-bold">
+                            [ System Status ]
+                        </span>
+                        <div class="flex gap-1.5">
+                            <div class="w-1.5 h-1.5 bg-[#10b981] animate-pulse rounded-full shadow-[0_0_8px_rgba(16,185,129,0.8)]"></div>
+                            <div class="w-1.5 h-1.5 bg-zinc-800 rounded-full"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <p class="text-5xl font-medium text-white font-manrope tracking-tighter">99.9%</p>
+                            <span class="text-[#10b981] text-xs font-mono uppercase">Uptime</span>
+                        </div>
+                        <p class="text-zinc-400 text-sm font-sans">Tech Card with Corner Accents on hover</p>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4) ICONS -->
+    <section id="icons" class="anchor-offset max-w-7xl mx-auto px-6 py-24 border-t border-zinc-900">
+        <h2 class="text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold mb-12">[ 04. Icons & Imagery ]</h2>
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-6 text-white animate-on-scroll">
+            <div class="flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm group hover:border-[#10b981]/50 transition-colors">
+                <iconify-icon icon="solar:star-fall-bold-duotone" class="text-3xl text-zinc-400 group-hover:text-[#10b981] transition-colors"></iconify-icon>
+                <span class="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">Star</span>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm group hover:border-[#10b981]/50 transition-colors">
+                <iconify-icon icon="solar:shield-check-bold-duotone" class="text-3xl text-zinc-400 group-hover:text-[#10b981] transition-colors"></iconify-icon>
+                <span class="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">Shield</span>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm group hover:border-[#10b981]/50 transition-colors">
+                <iconify-icon icon="solar:rocket-bold-duotone" class="text-3xl text-zinc-400 group-hover:text-[#10b981] transition-colors"></iconify-icon>
+                <span class="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">Rocket</span>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm group hover:border-[#10b981]/50 transition-colors">
+                <iconify-icon icon="solar:bolt-bold-duotone" class="text-3xl text-zinc-400 group-hover:text-[#10b981] transition-colors"></iconify-icon>
+                <span class="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">Energy</span>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm group hover:border-[#10b981]/50 transition-colors">
+                <iconify-icon icon="solar:chart-square-bold-duotone" class="text-3xl text-zinc-400 group-hover:text-[#10b981] transition-colors"></iconify-icon>
+                <span class="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">Chart</span>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-4 p-8 rounded-2xl border border-white/5 bg-white/5 backdrop-blur-sm group hover:border-[#10b981]/50 transition-colors">
+                <iconify-icon icon="solar:flame-bold-duotone" class="text-3xl text-zinc-400 group-hover:text-[#10b981] transition-colors"></iconify-icon>
+                <span class="text-[10px] text-zinc-500 font-mono uppercase tracking-widest">Flame</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5) MOTION (Marquee Loop) -->
+    <section id="motion" class="anchor-offset w-full py-24 border-t border-zinc-900 bg-black overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-6 mb-16">
+            <h2 class="text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold">[ 05. Motion Loop ]</h2>
+            <p class="text-zinc-400 mt-4 font-sans text-sm md:text-base max-w-2xl">Infinite scroll animation with an alpha mask for a smooth fading effect on the edges.</p>
+        </div>
+        
+        <div class="relative w-full py-12 border-y border-white/5 bg-black/40">
+            <div class="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-black to-transparent pointer-events-none"></div>
+            
+            <div class="flex overflow-hidden w-full">
+                <div class="flex animate-marquee whitespace-nowrap gap-16 items-center">
+                    <!-- Brand icons -->
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:apple"></iconify-icon>
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:react"></iconify-icon>
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:nodedotjs"></iconify-icon>
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:figma"></iconify-icon>
+                    <iconify-icon class="text-6xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:stripe"></iconify-icon>
+                    <iconify-icon class="text-6xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:spacex"></iconify-icon>
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:github"></iconify-icon>
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:vercel"></iconify-icon>
+                    <!-- Duplicated for loop -->
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:apple"></iconify-icon>
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:react"></iconify-icon>
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:nodedotjs"></iconify-icon>
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:figma"></iconify-icon>
+                    <iconify-icon class="text-6xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:stripe"></iconify-icon>
+                    <iconify-icon class="text-6xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:spacex"></iconify-icon>
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:github"></iconify-icon>
+                    <iconify-icon class="text-4xl text-neutral-500 hover:text-[#10b981] transition-colors" icon="simple-icons:vercel"></iconify-icon>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="w-full py-12 text-center border-t border-zinc-900 mt-20">
+        <p class="text-zinc-600 font-mono text-xs uppercase tracking-widest">© 2026 Cetose Consiente. Designed with Aura.</p>
+    </footer>
+</body>
+</html>
