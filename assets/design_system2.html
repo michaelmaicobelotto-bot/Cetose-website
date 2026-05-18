@@ -76,8 +76,82 @@
     .animate-marquee { animation: marquee 40s linear infinite; }
     @keyframes shimmer { from { transform: translateX(-100%) skewX(-15deg); } to { transform: translateX(200%) skewX(-15deg); } }
     
-    .animate-on-scroll { animation-play-state: paused !important; }
-    .animate-on-scroll.animate { animation-play-state: running !important; }
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(24px);
+        animation-play-state: paused !important;
+        will-change: opacity, transform;
+    }
+    .animate-on-scroll.animate {
+        opacity: 1;
+        transform: translateY(0);
+        animation: fadeUp 0.9s ease-out forwards;
+        animation-play-state: running !important;
+    }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    #social-proof .grid {
+        position: relative;
+        z-index: 1;
+    }
+    #social-proof .grid > div {
+        position: relative;
+        background: rgba(6, 17, 15, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02), 0 28px 60px rgba(0, 0, 0, 0.35), 0 10px 30px rgba(16, 185, 129, 0.12);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        overflow: hidden;
+        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    }
+    #social-proof .grid > div::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        margin: -1px;
+        border-radius: inherit;
+        background: radial-gradient(circle at top center, rgba(16, 185, 129, 0.18), transparent 35%);
+        filter: blur(18px);
+        opacity: 0.65;
+        pointer-events: none;
+        mix-blend-mode: screen;
+    }
+    #social-proof .grid > div:hover {
+        transform: translateY(-4px);
+        border-color: rgba(16, 185, 129, 0.35);
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), 0 34px 80px rgba(0, 0, 0, 0.4), 0 14px 40px rgba(16, 185, 129, 0.18);
+        background: rgba(7, 19, 17, 0.80);
+    }
+    #social-proof .grid > div .flex.gap-1 {
+        background: rgba(0, 0, 0, 0.15);
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        padding: 0.65rem;
+    }
+    #social-proof .grid img {
+        transition: transform 0.45s ease, opacity 0.45s ease, filter 0.45s ease;
+        transform-origin: center;
+        will-change: transform, opacity;
+    }
+    #social-proof .grid img:hover {
+        transform: scale(1.03);
+        filter: saturate(1.08) contrast(1.04);
+    }
+    #social-proof .grid .text-center h4::after {
+        content: ' ⭐⭐⭐⭐⭐';
+        display: inline-block;
+        margin-left: 0.5rem;
+        color: #a8f3d1;
+        opacity: 0.9;
+        font-size: 0.75em;
+        letter-spacing: 0.05em;
+    }
+    #social-proof .grid .text-center p {
+        color: rgba(203, 219, 211, 0.88);
+    }
 
     /* Progressive Blur CSS */
     .gradient-blur {
@@ -310,6 +384,44 @@
                 <!-- Video Wrapper -->
                 <div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-white/20 bg-black shadow-[0_0_50px_rgba(16,185,129,0.15)] group transition-all duration-500 hover:border-emerald-500/50">
                     <iframe id="panda-bdccf0d5-475a-4908-816b-3cf9151f620b" src="https://player-vz-3e4641f7-cd4.tv.pandavideo.com.br/embed/?v=bdccf0d5-475a-4908-816b-3cf9151f620b" style="border:none; width: 100%; height: 100%; position: absolute; top: 0; left: 0;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture" allowfullscreen=true fetchpriority="high"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFFER SECTION: E-book Cetose Consciente -->
+
+    <section id="animations" class="w-full py-20 border-t border-white/5 relative z-10 bg-black/60 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-10">
+            <h2 class="text-[10px] md:text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold"></h2>
+        </div>
+        
+        <div class="relative w-full py-6 border-y border-emerald-900/30 bg-emerald-950/20">
+            <!-- Alpha Masks -->
+            <div class="absolute left-0 top-0 bottom-0 w-28 z-10 bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-28 z-10 bg-gradient-to-l from-black to-transparent pointer-events-none"></div>
+            
+            <div class="flex overflow-hidden w-full">
+                <div class="flex animate-marquee whitespace-nowrap gap-16 items-center">
+                    <!-- Brand text -->
+                    <span class="text-4xl md:text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Cetose</span>
+                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-3xl md:text-4xl text-[#10b981]/50"></iconify-icon>
+                    <span class="text-4xl md:text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Consciente</span>
+                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-3xl md:text-4xl text-[#10b981]/50"></iconify-icon>
+                    <span class="text-4xl md:text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Energia</span>
+                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-3xl md:text-4xl text-[#10b981]/50"></iconify-icon>
+                    <span class="text-4xl md:text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Foco</span>
+                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-3xl md:text-4xl text-[#10b981]/50"></iconify-icon>
+                    
+                    <!-- Duplicated for seamless loop -->
+                    <span class="text-4xl md:text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Cetose</span>
+                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-3xl md:text-4xl text-[#10b981]/50"></iconify-icon>
+                    <span class="text-4xl md:text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Consciente</span>
+                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-3xl md:text-4xl text-[#10b981]/50"></iconify-icon>
+                    <span class="text-4xl md:text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Energia</span>
+                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-3xl md:text-4xl text-[#10b981]/50"></iconify-icon>
+                    <span class="text-4xl md:text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Foco</span>
+                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-3xl md:text-4xl text-[#10b981]/50"></iconify-icon>
                 </div>
             </div>
         </div>
@@ -551,304 +663,268 @@
         </div>
     </section>
 
-    <!-- 1) TYPOGRAPHY -->
-    <section id="typography" class="anchor-offset max-w-7xl mx-auto px-6 py-32 border-t border-white/5 relative z-10 bg-black/40 backdrop-blur-3xl rounded-[3rem] my-10">
-        <h2 class="text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold mb-16 flex items-center gap-4">
-            <span class="w-8 h-px bg-[#10b981]"></span> 01. Typography
-        </h2>
-        
-        <div class="space-y-16">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start border-b border-white/5 pb-12 animate-on-scroll">
-                <div class="space-y-2">
-                    <div class="text-zinc-500 font-mono text-xs uppercase">Display / H1</div>
-                    <div class="text-zinc-600 font-mono text-[10px]">Manrope • Medium • 80px</div>
-                </div>
-                <div class="md:col-span-3">
-                    <h1 class="text-5xl md:text-[80px] font-medium tracking-tighter font-manrope leading-[1.05] bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/50">
-                        O Mecanismo Oculto.
-                    </h1>
-                </div>
-            </div>
+    <!-- 5) PROVA SOCIAL: Antes e Depois -->
+    <section id="social-proof" class="anchor-offset max-w-7xl mx-auto px-6 py-32 border-t border-white/5 relative z-10 bg-black/40 backdrop-blur-3xl rounded-[3rem] my-10">
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start border-b border-white/5 pb-12 animate-on-scroll delay-100">
-                <div class="space-y-2">
-                    <div class="text-zinc-500 font-mono text-xs uppercase">Heading / H2</div>
-                    <div class="text-zinc-600 font-mono text-[10px]">Manrope • Medium • 60px</div>
-                </div>
-                <div class="md:col-span-3">
-                    <h2 class="text-4xl md:text-[60px] font-medium tracking-tighter font-manrope text-white">
-                        Quebrando o Ciclo Noturno
-                    </h2>
-                </div>
-            </div>
+        <!-- Glow -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start border-b border-white/5 pb-12 animate-on-scroll delay-200">
-                <div class="space-y-2">
-                    <div class="text-zinc-500 font-mono text-xs uppercase">Subtitle / H3</div>
-                    <div class="text-zinc-600 font-mono text-[10px]">Inter • Regular • 24px</div>
-                </div>
-                <div class="md:col-span-3">
-                    <h3 class="text-xl md:text-2xl font-sans text-emerald-400 font-medium">
-                        Não é falta de força de vontade, é o combustível errado.
-                    </h3>
-                </div>
-            </div>
+        <!-- Cabeçalho -->
+        <div class="text-center mb-20">
+            <h2 class="text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold mb-6">
+                TRANSFORMAÇÕES REAIS
+            </h2>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start border-b border-white/5 pb-12 animate-on-scroll delay-300">
-                <div class="space-y-2">
-                    <div class="text-zinc-500 font-mono text-xs uppercase">Body (Large)</div>
-                    <div class="text-zinc-600 font-mono text-[10px]">Inter • Regular • 18px</div>
+            <h3 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                Resultados que falam por si
+            </h3>
+
+            <p class="text-zinc-400 text-lg max-w-3xl mx-auto">
+                Veja pessoas reais que transformaram seus corpos usando o método Cetose Consciente.
+            </p>
+        </div>
+
+        <!-- GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- MARIA -->
+            <div class="bg-[#0b0b0b] rounded-[32px] overflow-hidden border border-white/10 shadow-2xl hover:border-emerald-500/30 transition-all duration-500">
+
+                <!-- IMAGENS -->
+                <div class="flex gap-1 bg-black p-2">
+
+                    <!-- ANTES -->
+                    <div class="relative w-1/2 h-[520px] overflow-hidden rounded-2xl">
+                        <img 
+                            src="maria-antes.jpg"
+                            alt="Maria Antes"
+                            class="w-full h-full object-cover"
+                        >
+
+                    
+                    </div>
+
+                    <!-- DEPOIS -->
+                    <div class="relative w-1/2 h-[520px] overflow-hidden rounded-2xl">
+                        <img 
+                            src="maria-depois.jpg"
+                            alt="Maria Depois"
+                            class="w-full h-full object-cover"
+                        >
+
+                    
+                    </div>
+
                 </div>
-                <div class="md:col-span-3">
-                    <p class="leading-relaxed text-lg text-gray-400 font-sans max-w-2xl">
-                        A cetose consciente é o processo pelo qual treinamos o corpo para parar de depender do açúcar e começar a usar a gordura estocada como fonte primária de energia.
+
+                <!-- TEXTO -->
+                <div class="text-center py-8 px-6">
+                    <h4 class="text-white text-3xl font-bold mb-3">
+                        Maria - 3 meses
+                    </h4>
+
+                    <p class="text-zinc-400 text-lg">
+                        <span class="text-emerald-400 font-semibold">
+                            Perdeu 15kg
+                        </span>
+                        com o método
                     </p>
                 </div>
+
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start animate-on-scroll delay-400">
-                <div class="space-y-2">
-                    <div class="text-zinc-500 font-mono text-xs uppercase">Labels & Tags</div>
-                    <div class="text-zinc-600 font-mono text-[10px]">Geist Mono • Bold • 12px</div>
-                </div>
-                <div class="md:col-span-3 flex flex-wrap gap-4">
-                    <span class="text-xs px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white tracking-widest uppercase font-mono">Neutral Tag</span>
-                    <span class="text-xs px-4 py-2 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 tracking-widest uppercase font-mono">Success Tag</span>
-                    <span class="text-xs px-4 py-2 rounded-full bg-red-500/20 text-red-400 border border-red-500/30 tracking-widest uppercase font-mono">Warning Tag</span>
-                </div>
-            </div>
-        </div>
-    </section>
+                <!-- JOÃO -->
+            <div class="bg-[#0b0b0b] rounded-[32px] overflow-hidden border border-white/10 shadow-2xl hover:border-emerald-500/30 transition-all duration-500">
 
-    <!-- 2) COLORS & SURFACES -->
-    <section id="colors" class="anchor-offset max-w-7xl mx-auto px-6 py-32 border-t border-white/5 relative z-10 bg-black/40 backdrop-blur-3xl rounded-[3rem] my-10">
-        <h2 class="text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold mb-16 flex items-center gap-4">
-            <span class="w-8 h-px bg-[#10b981]"></span> 02. The 3-Tone Green System
-        </h2>
+                <div class="flex gap-1 bg-black p-2">
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 animate-on-scroll">
-            <!-- Tone 1 -->
-            <div class="group relative bg-[#0a0a0a] rounded-2xl border border-white/5 p-4 overflow-hidden">
-                <div class="absolute inset-0 bg-emerald-400/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="h-32 w-full bg-[#34d399] rounded-xl mb-4 shadow-[0_0_20px_rgba(52,211,153,0.3)]"></div>
-                <div class="flex justify-between items-end">
-                    <div>
-                        <h4 class="text-white font-medium font-sans">Neon Highlight</h4>
-                        <p class="text-zinc-500 text-xs mt-1">Glows, Beams, Success</p>
-                    </div>
-                    <span class="text-emerald-400 font-mono text-xs">#34D399</span>
-                </div>
-            </div>
+                    <!-- ANTES -->
+                    <div class="relative w-1/2 h-[520px] overflow-hidden rounded-2xl">
+                        <img 
+                            src="joão-antes.jpg"
+                            alt="João Antes"
+                            class="w-full h-full object-cover"
+                        >
 
-            <!-- Tone 2 -->
-            <div class="group relative bg-[#0a0a0a] rounded-2xl border border-white/5 p-4 overflow-hidden">
-                <div class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="h-32 w-full bg-[#10b981] rounded-xl mb-4 shadow-[0_0_20px_rgba(16,185,129,0.3)]"></div>
-                <div class="flex justify-between items-end">
-                    <div>
-                        <h4 class="text-white font-medium font-sans">Primary Emerald</h4>
-                        <p class="text-zinc-500 text-xs mt-1">Buttons, Main Accents</p>
-                    </div>
-                    <span class="text-emerald-500 font-mono text-xs">#10B981</span>
-                </div>
-            </div>
-
-            <!-- Tone 3 -->
-            <div class="group relative bg-[#0a0a0a] rounded-2xl border border-white/5 p-4 overflow-hidden">
-                <div class="absolute inset-0 bg-emerald-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div class="h-32 w-full bg-[#059669] rounded-xl mb-4 shadow-[0_0_20px_rgba(5,150,105,0.3)]"></div>
-                <div class="flex justify-between items-end">
-                    <div>
-                        <h4 class="text-white font-medium font-sans">Deep Green</h4>
-                        <p class="text-zinc-500 text-xs mt-1">Shadows, Gradients</p>
-                    </div>
-                    <span class="text-emerald-600 font-mono text-xs">#059669</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="mt-20">
-            <h3 class="text-xs font-mono text-zinc-500 mb-8 uppercase tracking-widest">Surfaces & Gradients</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-on-scroll delay-200">
-                
-                <!-- Glass Surface -->
-                <div class="h-48 w-full rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 to-white/0 backdrop-blur-xl flex flex-col p-8 justify-between relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/20 rounded-full blur-3xl group-hover:bg-emerald-400/30 transition-colors"></div>
-                    <iconify-icon icon="solar:layers-minimalistic-bold-duotone" class="text-3xl text-emerald-400"></iconify-icon>
-                    <div>
-                        <span class="text-white font-medium font-sans text-lg block">Glass Surface</span>
-                        <span class="text-zinc-400 text-sm">bg-white/10 • backdrop-blur-xl</span>
-                    </div>
-                </div>
-                
-                <!-- Dark Gradient -->
-                <div class="h-48 w-full rounded-3xl border border-emerald-900/50 bg-gradient-to-tr from-black via-[#06110f] to-[#047857]/20 flex flex-col p-8 justify-between relative overflow-hidden">
-                    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-20"></div>
-                    <iconify-icon icon="solar:moon-bold-duotone" class="text-3xl text-emerald-600"></iconify-icon>
-                    <div class="relative z-10">
-                        <span class="text-white font-medium font-sans text-lg block">Deep Forest Gradient</span>
-                        <span class="text-zinc-400 text-sm">black → #06110f → emerald/20</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 3) UI COMPONENTS -->
-    <section id="components" class="anchor-offset max-w-7xl mx-auto px-6 py-32 border-t border-white/5 relative z-10 bg-black/40 backdrop-blur-3xl rounded-[3rem] my-10">
-        <h2 class="text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold mb-16 flex items-center gap-4">
-            <span class="w-8 h-px bg-[#10b981]"></span> 03. UI Components & Data
-        </h2>
-
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
-            <!-- Left Column: Inputs & Buttons -->
-            <div class="lg:col-span-5 space-y-8 animate-on-scroll">
-                
-                <!-- Inputs Box -->
-                <div class="p-8 rounded-3xl border border-white/5 bg-[#0a0a0a] flex flex-col gap-8">
-                    <h3 class="text-white font-manrope text-xl tracking-tight border-b border-white/10 pb-4">Forms & Inputs</h3>
                     
-                    <div class="group relative w-full">
-                        <input class="peer w-full bg-transparent border-b border-white/20 py-3 text-white placeholder-transparent focus:border-[#10b981] focus:outline-none transition-colors font-sans text-base" id="email" placeholder="Email" type="email"/>
-                        <label class="absolute left-0 -top-5 text-xs text-zinc-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-zinc-400 peer-placeholder-shown:top-3 peer-focus:-top-5 peer-focus:text-[10px] peer-focus:text-[#10b981] font-mono uppercase tracking-wider font-bold" for="email">E-mail Address</label>
                     </div>
 
-                    <div class="group relative w-full">
-                        <select class="w-full bg-transparent border-b border-white/20 py-3 text-white focus:border-[#10b981] focus:outline-none transition-colors font-sans text-base appearance-none cursor-pointer">
-                            <option value="" disabled selected class="bg-black text-zinc-500">Select Goal</option>
-                            <option value="1" class="bg-black text-white">Perda de Peso</option>
-                            <option value="2" class="bg-black text-white">Mais Energia</option>
-                        </select>
-                        <iconify-icon icon="solar:alt-arrow-down-linear" class="absolute right-0 top-4 text-zinc-400 pointer-events-none"></iconify-icon>
-                        <label class="absolute left-0 -top-5 text-[10px] text-[#10b981] font-mono uppercase tracking-wider font-bold">Your Goal</label>
+                    <!-- DEPOIS -->
+                    <div class="relative w-1/2 h-[520px] overflow-hidden rounded-2xl">
+                        <img 
+                            src="joão-depois.jpg"
+                            alt="João Depois"
+                            class="w-full h-full object-cover"
+                        >
+
+                    
                     </div>
+
                 </div>
 
-                <!-- Secondary Buttons -->
-                <div class="p-8 rounded-3xl border border-white/5 bg-[#0a0a0a] flex flex-col gap-6 items-start">
-                    <h3 class="text-white font-manrope text-xl tracking-tight border-b border-white/10 pb-4 w-full">Action Elements</h3>
-                    
-                    <button class="group relative inline-flex w-full h-[54px] items-center justify-center overflow-hidden rounded-xl outline-none cursor-pointer transition-transform active:scale-95 bg-white/5 border border-white/10 hover:border-emerald-500/50" type="button">
-                        <span class="absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-500 group-hover:opacity-100 z-10" style="background: radial-gradient(50% 50% at 50% 100%, rgba(16, 185, 129, 0.2) 0%, transparent 100%);"></span>
-                        <span class="relative z-20 flex items-center justify-center gap-3 text-sm font-medium text-white tracking-wide">
-                            <iconify-icon icon="solar:lock-keyhole-unlocked-bold-duotone" class="text-emerald-400 text-lg"></iconify-icon>
-                            <span>Acessar Portal</span>
+                <div class="text-center py-8 px-6">
+                    <h4 class="text-white text-3xl font-bold mb-3">
+                        João - 4 meses
+                    </h4>
+
+                    <p class="text-zinc-400 text-lg">
+                        <span class="text-emerald-400 font-semibold">
+                            Perdeu 7kg
                         </span>
-                    </button>
-
-                    <button class="flex items-center gap-2 text-sm text-zinc-400 hover:text-emerald-400 transition-colors py-2 px-4 rounded-lg hover:bg-emerald-400/10">
-                        <iconify-icon icon="solar:download-minimalistic-bold-duotone"></iconify-icon> Baixar PDF
-                    </button>
-                </div>
-            </div>
-
-            <!-- Right Column: Interactive Cards & Charts -->
-            <div class="lg:col-span-7 space-y-8 animate-on-scroll delay-200">
-                
-                <!-- Flashlight Card (Inspired by gemini1) -->
-                <div class="flashlight-card w-full h-[220px] bg-neutral-950 border border-white/10 rounded-3xl p-8 flex flex-col justify-end group overflow-hidden relative" onmousemove="const rect = this.getBoundingClientRect(); this.style.setProperty('--mouse-x', `${event.clientX - rect.left}px`); this.style.setProperty('--mouse-y', `${event.clientY - rect.top}px`);">
-                    <div class="absolute top-8 right-8 w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-emerald-500/50 transition-colors">
-                        <iconify-icon class="text-2xl text-neutral-500 group-hover:text-emerald-400 transition-colors duration-500" icon="solar:magic-stick-3-bold-duotone"></iconify-icon>
-                    </div>
-                    <h4 class="text-2xl text-white font-manrope font-semibold tracking-tight mb-2">Interactive Flashlight</h4>
-                    <p class="text-sm text-neutral-400 font-sans max-w-md">Passe o mouse sobre este card para ver o feixe de luz esmeralda acompanhando o cursor.</p>
-                </div>
-
-                <!-- AXIS Data Viz Card (Inspired by animations-gemini2) -->
-                <div class="chart-card bg-[#06110f]">
-                    <div class="flex justify-between mb-8 items-end">
-                        <div>
-                            <h3 class="text-xs font-mono font-bold uppercase tracking-widest text-[#10b981] mb-1">Evolução do Metabolismo</h3>
-                            <p class="text-2xl font-manrope font-medium text-white">Queima de Gordura vs Tempo</p>
-                        </div>
-                        <div class="flex gap-4 text-[10px] font-mono text-zinc-400 uppercase">
-                            <span class="flex items-center gap-2"><span class="w-2 h-2 bg-white rounded-full"></span> Carboidrato</span>
-                            <span class="flex items-center gap-2"><span class="w-2 h-2 bg-[#10b981] rounded-full shadow-[0_0_5px_#10b981]"></span> Gordura</span>
-                        </div>
-                    </div>
-                    <div class="h-64 w-full relative" id="axis-line-chart">
-                        <!-- SVG injected by JS -->
-                    </div>
+                        com o método
+                    </p>
                 </div>
 
             </div>
-        </div>
-    </section>
 
-    <!-- 4) ICONS (SaaS Grid inspired by marketplace-light/animations) -->
-    <section id="icons" class="anchor-offset max-w-7xl mx-auto px-6 py-32 border-t border-white/5 relative z-10 bg-black/40 backdrop-blur-3xl rounded-[3rem] my-10">
-        <h2 class="text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold mb-16 flex items-center gap-4">
-            <span class="w-8 h-px bg-[#10b981]"></span> 04. Iconography
-        </h2>
-        
-        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4 animate-on-scroll">
-            <div class="group flex flex-col items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-[#10b981]/50 cursor-pointer transition-all duration-300 hover:bg-[#10b981]/10">
-                <iconify-icon icon="solar:fire-square-bold-duotone" class="text-3xl text-zinc-500 mb-4 group-hover:text-[#10b981] group-hover:scale-110 transition-all"></iconify-icon>
-                <span class="text-[10px] font-mono text-zinc-500 group-hover:text-white transition-colors uppercase tracking-widest">Burn</span>
-            </div>
-            <div class="group flex flex-col items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-[#10b981]/50 cursor-pointer transition-all duration-300 hover:bg-[#10b981]/10">
-                <iconify-icon icon="solar:heart-pulse-bold-duotone" class="text-3xl text-zinc-500 mb-4 group-hover:text-[#10b981] group-hover:scale-110 transition-all"></iconify-icon>
-                <span class="text-[10px] font-mono text-zinc-500 group-hover:text-white transition-colors uppercase tracking-widest">Health</span>
-            </div>
-            <div class="group flex flex-col items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-[#10b981]/50 cursor-pointer transition-all duration-300 hover:bg-[#10b981]/10">
-                <iconify-icon icon="solar:moon-sleep-bold-duotone" class="text-3xl text-zinc-500 mb-4 group-hover:text-[#10b981] group-hover:scale-110 transition-all"></iconify-icon>
-                <span class="text-[10px] font-mono text-zinc-500 group-hover:text-white transition-colors uppercase tracking-widest">Sleep</span>
-            </div>
-            <div class="group flex flex-col items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-[#10b981]/50 cursor-pointer transition-all duration-300 hover:bg-[#10b981]/10">
-                <iconify-icon icon="solar:bolt-circle-bold-duotone" class="text-3xl text-zinc-500 mb-4 group-hover:text-[#10b981] group-hover:scale-110 transition-all"></iconify-icon>
-                <span class="text-[10px] font-mono text-zinc-500 group-hover:text-white transition-colors uppercase tracking-widest">Energy</span>
-            </div>
-            <div class="group flex flex-col items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-[#10b981]/50 cursor-pointer transition-all duration-300 hover:bg-[#10b981]/10">
-                <iconify-icon icon="solar:apple-bold-duotone" class="text-3xl text-zinc-500 mb-4 group-hover:text-[#10b981] group-hover:scale-110 transition-all"></iconify-icon>
-                <span class="text-[10px] font-mono text-zinc-500 group-hover:text-white transition-colors uppercase tracking-widest">Food</span>
-            </div>
-            <div class="group flex flex-col items-center justify-center p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-[#10b981]/50 cursor-pointer transition-all duration-300 hover:bg-[#10b981]/10">
-                <iconify-icon icon="solar:waterdrop-bold-duotone" class="text-3xl text-zinc-500 mb-4 group-hover:text-[#10b981] group-hover:scale-110 transition-all"></iconify-icon>
-                <span class="text-[10px] font-mono text-zinc-500 group-hover:text-white transition-colors uppercase tracking-widest">Hydrate</span>
-            </div>
-        </div>
-    </section>
+            <!-- ANA -->
+            <div class="bg-[#0b0b0b] rounded-[32px] overflow-hidden border border-white/10 shadow-2xl hover:border-emerald-500/30 transition-all duration-500">
 
-    <!-- 5) ANIMATIONS / MARQUEE -->
-    <section id="animations" class="w-full py-32 border-t border-white/5 relative z-10 bg-black/60 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 mb-16">
-            <h2 class="text-xs font-mono text-[#10b981] tracking-widest uppercase font-bold">[ 05. Infinite Motion ]</h2>
-        </div>
-        
-        <div class="relative w-full py-12 border-y border-emerald-900/30 bg-emerald-950/20">
-            <!-- Alpha Masks -->
-            <div class="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-black to-transparent pointer-events-none"></div>
-            <div class="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-black to-transparent pointer-events-none"></div>
-            
-            <div class="flex overflow-hidden w-full">
-                <div class="flex animate-marquee whitespace-nowrap gap-24 items-center">
-                    <!-- Brand text -->
-                    <span class="text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Cetose</span>
-                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-4xl text-[#10b981]/50"></iconify-icon>
-                    <span class="text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Consciente</span>
-                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-4xl text-[#10b981]/50"></iconify-icon>
-                    <span class="text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Energia</span>
-                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-4xl text-[#10b981]/50"></iconify-icon>
-                    <span class="text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Foco</span>
-                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-4xl text-[#10b981]/50"></iconify-icon>
+                <div class="flex gap-1 bg-black p-2">
+
+                    <!-- ANTES -->
+                    <div class="relative w-1/2 h-[520px] overflow-hidden rounded-2xl">
+                        <img 
+                            src="ana-antes.jpg"
+                            alt="Ana Antes"
+                            class="w-full h-full object-cover"
+                        >
+
                     
-                    <!-- Duplicated for seamless loop -->
-                    <span class="text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Cetose</span>
-                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-4xl text-[#10b981]/50"></iconify-icon>
-                    <span class="text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Consciente</span>
-                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-4xl text-[#10b981]/50"></iconify-icon>
-                    <span class="text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Energia</span>
-                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-4xl text-[#10b981]/50"></iconify-icon>
-                    <span class="text-5xl font-manrope font-bold text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0 uppercase">Foco</span>
-                    <iconify-icon icon="solar:star-fall-bold-duotone" class="text-4xl text-[#10b981]/50"></iconify-icon>
+                    </div>
+
+                    <!-- DEPOIS -->
+                    <div class="relative w-1/2 h-[520px] overflow-hidden rounded-2xl">
+                        <img 
+                            src="ana-depois.jpg"
+                            alt="Ana Depois"
+                            class="w-full h-full object-cover"
+                        >
+
+                    
+                    </div>
+
+                </div>
+
+                <div class="text-center py-8 px-6">
+                    <h4 class="text-white text-3xl font-bold mb-3">
+                        Ana - 5 meses
+                    </h4>
+
+                    <p class="text-zinc-400 text-lg">
+                        <span class="text-emerald-400 font-semibold">
+                            Perdeu 18kg
+                        </span>
+                        com o método
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- OFFER SECTION: E-book Cetose Consciente -->
+    <section id="offer" class="anchor-offset max-w-7xl mx-auto px-6 py-24 border-t border-white/5 relative z-10 bg-black/30 backdrop-blur-3xl rounded-[3rem] my-10 overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.18),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.12),transparent_25%)] pointer-events-none"></div>
+        <div class="relative rounded-[2.5rem] border border-white/10 bg-white/5 p-6 shadow-[0_40px_120px_rgba(16,185,129,0.12)] backdrop-blur-[18px] overflow-hidden">
+            <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),transparent_35%)] pointer-events-none"></div>
+            <div class="relative flex flex-col gap-6 md:gap-8">
+                <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                    <div class="space-y-3">
+                        <span class="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-emerald-200 shadow-[0_0_24px_rgba(16,185,129,0.14)]">OFERTA LIMITADA</span>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white">Acesso Completo ao Método Cetose Consciente</h2>
+                        <p class="text-sm text-zinc-400 max-w-2xl">Pagamento único • Acesso imediato</p>
+                    </div>
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:gap-4">
+                        <div class="rounded-3xl border border-white/10 bg-black/40 px-5 py-4 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.05),0_20px_50px_rgba(0,0,0,0.35)]">
+                            <p class="text-[10px] uppercase tracking-[0.28em] text-zinc-500">Preço antigo</p>
+                            <p class="text-2xl font-semibold text-zinc-400 line-through">R$ 47,90</p>
+                        </div>
+                        <div class="rounded-[2rem] bg-gradient-to-br from-emerald-500/15 via-emerald-400/10 to-black/30 border border-emerald-500/20 px-5 py-4 shadow-[0_20px_50px_rgba(16,185,129,0.18)]">
+                            <p class="text-[10px] uppercase tracking-[0.28em] text-emerald-200">Preço atual</p>
+                            <p class="text-4xl sm:text-5xl font-extrabold text-white">R$ 27,90</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <div class="group relative scale-100 hover:scale-105 transition-all duration-300 w-full sm:w-auto">
+                        <div class="-inset-2 group-hover:opacity-100 transition duration-500 bg-emerald-600/40 opacity-0 rounded-full absolute blur-xl"></div>
+                        <div class="absolute -inset-[1px] rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none">
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300%] h-[300%] bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] animate-[spin_2s_linear_infinite]"></div>
+                        </div>
+                        <button class="group relative z-10 flex w-full sm:w-auto items-center justify-center overflow-hidden rounded-full p-[1px] leading-none cursor-pointer">
+                            <span class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_340deg,#10b981_360deg)]"></span>
+                            <span class="relative flex h-[64px] w-full items-center justify-center rounded-full bg-black px-10 ring-1 ring-white/10">
+                                <span class="absolute inset-0 overflow-hidden rounded-full">
+                                    <span class="absolute top-0 left-0 h-full w-full -skew-x-12 bg-gradient-to-r from-transparent via-emerald-400/20 to-transparent opacity-0 group-hover:animate-[shimmer_1.5s_infinite] group-hover:opacity-100"></span>
+                                </span>
+                                <span class="relative z-10 flex items-center text-sm font-bold tracking-widest text-white uppercase">QUERO ACESSAR AGORA</span>
+                            </span>
+                        </button>
+                    </div>
+                    <p class="text-sm text-zinc-400">Pagamento único • Acesso imediato</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="guarantee" class="anchor-offset max-w-7xl mx-auto px-6 py-16 border-t border-white/5 relative z-10 bg-black/30 backdrop-blur-3xl rounded-[3rem] my-10 overflow-hidden animate-on-scroll">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.18),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.10),transparent_30%)] pointer-events-none"></div>
+        <div class="relative rounded-[2.5rem] border border-white/10 bg-white/5 p-6 shadow-[0_30px_90px_rgba(16,185,129,0.14)] backdrop-blur-[24px] overflow-hidden">
+            <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),transparent_40%)] pointer-events-none"></div>
+            <div class="relative grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+                <div class="space-y-5">
+                    <div class="flex items-center gap-3">
+                        <div class="relative flex h-20 w-20 items-center justify-center rounded-full bg-black/20 border border-emerald-400/20 shadow-[0_0_40px_rgba(16,185,129,0.12)]">
+                            <div class="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.22),transparent_55%)]"></div>
+                            <div class="relative flex h-14 w-14 items-center justify-center rounded-full bg-black/70 border border-white/10">
+                                <iconify-icon icon="solar:shield-bold-duotone" class="text-2xl text-emerald-300"></iconify-icon>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-xs uppercase tracking-[0.32em] text-emerald-200">Risco Zero</p>
+                            <p class="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 px-3 py-1 text-sm uppercase tracking-[0.2em] text-emerald-100 shadow-[0_0_20px_rgba(16,185,129,0.12)]">Selo de Garantia</p>
+                        </div>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white">Garantia Total de 7 Dias</h2>
+                    <p class="max-w-3xl text-base leading-8 text-zinc-300 sm:text-lg">
+                        Você pode acessar o método Cetose Consciente hoje e testar por 7 dias completos. Se não sentir diferença no seu corpo, energia ou controle alimentar, basta solicitar o reembolso e devolveremos <span class="font-semibold text-white">100% do seu investimento</span>.
+                    </p>
+                </div>
+                <div class="relative mx-auto flex max-w-lg items-center justify-center">
+                    <div class="group relative flex h-56 w-56 sm:h-64 sm:w-64 items-center justify-center rounded-full bg-[#050806] border border-emerald-500/15 shadow-[0_0_80px_rgba(16,185,129,0.22)] transition-all duration-500 ease-out hover:scale-105">
+                        <div class="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.16),transparent_55%)]"></div>
+                        <div class="absolute inset-0 rounded-full border border-emerald-500/20 opacity-50"></div>
+                        <div class="absolute inset-1 rounded-full border border-white/10 opacity-60"></div>
+                        <div class="absolute inset-4 rounded-full border border-emerald-400/20 opacity-80"></div>
+                        <div class="absolute inset-7 rounded-full border border-emerald-500/10 opacity-70"></div>
+                        <div class="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.08),transparent_70%)] pointer-events-none"></div>
+                        <div class="absolute -inset-2 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.35),transparent_60%)] blur-2xl"></div>
+                        <div class="absolute inset-0 rounded-full ring ring-emerald-400/10 opacity-40"></div>
+                        <div class="absolute inset-0 rounded-full border border-white/5 shadow-[0_0_20px_rgba(16,185,129,0.12)]"></div>
+                        <div class="absolute inset-0 rounded-full opacity-20 animate-pulse bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.18),transparent_80%)]"></div>
+                        <div class="relative flex h-full w-full flex-col items-center justify-center text-center px-4">
+                            <span class="text-[10px] uppercase tracking-[0.35em] text-emerald-300">GARANTIA TOTAL</span>
+                            <div class="mt-4 relative flex h-24 w-24 items-center justify-center rounded-full bg-[#07120f] border border-emerald-400/20 shadow-[0_0_35px_rgba(16,185,129,0.22)]">
+                                <div class="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.14),transparent_55%)]"></div>
+                                <span class="relative text-[5rem] font-black leading-none tracking-tight text-emerald-300">7</span>
+                            </div>
+                            <span class="mt-3 text-sm font-semibold uppercase tracking-[0.28em] text-white">DIAS</span>
+                            <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-[10px] uppercase tracking-[0.3em] text-emerald-200">
+                                <span>RISCO ZERO</span>
+                                <span class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.8)]"></span>
+                                <span>100% DO INVESTIMENTO</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <footer class="w-full py-12 text-center border-t border-white/5 relative z-10 bg-black">
-        <p class="text-zinc-600 font-mono text-xs uppercase tracking-widest">© 2026 Cetose Consiente. Designed with Aura.</p>
+        <p class="text-zinc-600 font-mono text-xs uppercase tracking-widest">© 2026 Cetose Consiente. Designed </p>
     </footer>
 
     <!-- JS for AXIS Data Visualization -->
