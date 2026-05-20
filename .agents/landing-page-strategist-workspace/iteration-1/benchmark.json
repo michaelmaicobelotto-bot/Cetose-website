@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "skill_name": "landing-page-strategist",
+    "skill_path": "/.agents/landing-page-strategist",
+    "executor_model": "gemini-3.5-flash",
+    "analyzer_model": "gemini-3.5-flash",
+    "timestamp": "2026-05-20T16:15:00Z",
+    "evals_run": [0, 1],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "cetose-consciente-landing-page",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 12.45,
+        "tokens": 15200,
+        "tool_calls": 5,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Verificar se há exatamente um elemento h1 no arquivo HTML", "passed": true, "evidence": "Contém apenas um elemento h1 na seção hero."},
+        {"text": "Verificar se as seções abordam o Problema, Agitação e Solução", "passed": true, "evidence": "A seção #section-dor-solucao usa a estrutura PAS perfeitamente."},
+        {"text": "Verificar se os elementos de conversão possuem IDs específicos exclusivos", "passed": true, "evidence": "Todos os CTAs e links possuem IDs como #cta-hero-download e #link-politica."}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "cetose-consciente-landing-page",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "passed": 1,
+        "failed": 2,
+        "total": 3,
+        "time_seconds": 9.4,
+        "tokens": 11000,
+        "tool_calls": 3,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Verificar se há exatamente um elemento h1 no arquivo HTML", "passed": false, "evidence": "O arquivo contém dois elementos H1: um no cabeçalho e outro na seção de conteúdo."},
+        {"text": "Verificar se as seções abordam o Problema, Agitação e Solução", "passed": true, "evidence": "O texto menciona de forma simplificada o problema e a solução."},
+        {"text": "Verificar se os elementos de conversão possuem IDs específicos exclusivos", "passed": false, "evidence": "O link de CTA não possui atributo ID."}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "antes-depois-fitness-section",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 2,
+        "failed": 0,
+        "total": 2,
+        "time_seconds": 7.89,
+        "tokens": 8200,
+        "tool_calls": 4,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Verificar se há representação de duas colunas para comparação de antes e depois", "passed": true, "evidence": "O arquivo HTML implementa uma classe CSS .comparison-grid que usa grid-template-columns: 1fr 1fr no desktop, separando o antes e o depois do aluno."},
+        {"text": "Verificar se inclui depoimentos curtos e métricas de perda de peso", "passed": true, "evidence": "Os cartões contêm o peso inicial/atual e as citações dos alunos."}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "antes-depois-fitness-section",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 1,
+        "failed": 1,
+        "total": 2,
+        "time_seconds": 5.2,
+        "tokens": 6000,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Verificar se há representação de duas colunas para comparação de antes e depois", "passed": false, "evidence": "Os dados de Lucas estão listados sequencialmente em uma lista sem estrutura de colunas comparativas."},
+        {"text": "Verificar se inclui depoimentos curtos e métricas de perda de peso", "passed": true, "evidence": "Contém as métricas de peso e o depoimento de Lucas."}
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 10.17, "stddev": 3.22, "min": 7.89, "max": 12.45},
+      "tokens": {"mean": 11700, "stddev": 4949.7, "min": 8200, "max": 15200}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.415, "stddev": 0.12, "min": 0.33, "max": 0.5},
+      "time_seconds": {"mean": 7.3, "stddev": 2.97, "min": 5.2, "max": 9.4},
+      "tokens": {"mean": 8500, "stddev": 3535.5, "min": 6000, "max": 11000}
+    },
+    "delta": {
+      "pass_rate": "+0.585",
+      "time_seconds": "+2.87",
+      "tokens": "+3200"
+    }
+  },
+  "notes": [
+    "A nova skill aumentou a taxa de aprovação média de 41.5% para 100%.",
+    "A skill de estrategista garante a formatação semântica correta de H1 e a inclusão de IDs exclusivos nos links e botões.",
+    "O layout de duas colunas foi perfeitamente estabelecido para o componente de Antes e Depois."
+  ]
+}

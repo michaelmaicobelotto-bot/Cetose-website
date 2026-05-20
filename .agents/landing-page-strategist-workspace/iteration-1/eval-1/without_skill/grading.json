@@ -1,0 +1,23 @@
+{
+  "expectations": [
+    {
+      "text": "Verificar se há representação de duas colunas para comparação de antes e depois",
+      "passed": false,
+      "evidence": "Os dados de Lucas estão listados sequencialmente em uma lista sem estrutura de colunas comparativas."
+    },
+    {
+      "text": "Verificar se inclui depoimentos curtos e métricas de perda de peso",
+      "passed": true,
+      "evidence": "Contém as métricas de peso e o depoimento de Lucas."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 1,
+    "total": 2,
+    "pass_rate": 0.5
+  },
+  "timing": {
+    "total_duration_seconds": 5.2
+  }
+}

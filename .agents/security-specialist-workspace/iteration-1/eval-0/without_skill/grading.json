@@ -1,0 +1,23 @@
+{
+  "expectations": [
+    {
+      "text": "Verificar se a resposta contém seções de descrição da falha, impacto, código corrigido e explicação",
+      "passed": false,
+      "evidence": "O relatório não segue a estrutura proposta pela skill, fornecendo apenas uma correção curta."
+    },
+    {
+      "text": "Verificar se o código corrigido adota consultas parametrizadas reais em vez de sanitizações manuais incompletas",
+      "passed": false,
+      "evidence": "O código corrigido usa sanitização manual ineficaz (replace simples de aspas), o que ainda é suscetível a desvios de SQL Injection em certos dialetos e bancos de dados."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 2,
+    "total": 2,
+    "pass_rate": 0.0
+  },
+  "timing": {
+    "total_duration_seconds": 3.5
+  }
+}

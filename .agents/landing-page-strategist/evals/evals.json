@@ -1,0 +1,17 @@
+{
+  "skill_name": "landing-page-strategist",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Escreva a estrutura e a copy completa de uma Landing Page para um e-book gratuito intitulado 'Cetose Consciente', voltado para emagrecimento saudável. Quero que a copy use o método PAS (Problema, Agitação, Solução) e que a página adote uma estética Dark-Emerald premium (tema escuro com detalhes em verde-esmeralda e glassmorphism).",
+      "expected_output": "Uma estrutura de Landing Page com seções bem divididas (Hero, PAS, Benefícios, Depoimentos/Antes e Depois, FAQ, CTA com microcopy) contendo textos prontos para conversão, indicações visuais de design premium (como glassmorphism e glows) e boas práticas de SEO (um único H1 e cabeçalhos em hierarquia correta).",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "Crie uma seção de Antes e Depois (com duas colunas simétricas) para uma Landing Page de um programa de treinamento físico. O estilo deve ter um layout limpo, contendo a história de transformação de dois alunos fictícios com depoimento curto, dados de peso perdidos e status de transformação.",
+      "expected_output": "Saída em HTML ou Markdown estruturado representando uma seção com grade de duas colunas, classes ou estilos CSS para os cartões de Antes e Depois, badges indicativos, títulos claros, imagens demonstrativas e IDs únicos em todos os elementos interativos.",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "expectations": [
+    {
+      "text": "Verificar se a copy adota seções ou fluxos focados em Atenção, Interesse, Desejo e Ação",
+      "passed": false,
+      "evidence": "O texto apenas lista informações secas sobre o curso sem a estruturação persuasiva AIDA."
+    },
+    {
+      "text": "Verificar se a primeira frase é um gancho intrigante focado no público-alvo",
+      "passed": false,
+      "evidence": "A abertura é genérica: 'Se você quer falar melhor em público...'"
+    },
+    {
+      "text": "Verificar se a copy termina com uma instrução clara para clicar ou se inscrever",
+      "passed": true,
+      "evidence": "Termina sugerindo conferir o site."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "timing": {
+    "total_duration_seconds": 4.1
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "expectations": [
+    {
+      "text": "Verificar se há representação de duas colunas para comparação de antes e depois",
+      "passed": true,
+      "evidence": "O arquivo HTML implementa uma classe CSS .comparison-grid que usa grid-template-columns: 1fr 1fr no desktop, separando o antes e o depois do aluno."
+    },
+    {
+      "text": "Verificar se inclui depoimentos curtos e métricas de perda de peso",
+      "passed": true,
+      "evidence": "Os cartões contêm o peso inicial/atual e as citações dos alunos."
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 0,
+    "total": 2,
+    "pass_rate": 1.0
+  },
+  "timing": {
+    "total_duration_seconds": 7.89
+  }
+}

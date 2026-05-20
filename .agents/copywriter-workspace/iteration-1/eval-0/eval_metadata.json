@@ -1,0 +1,22 @@
+{
+  "eval_id": 0,
+  "eval_name": "anuncio-oratoria-executiva",
+  "prompt": "Escreva um anúncio de Facebook Ads persuasivo para um curso de oratória e comunicação para executivos. Use a fórmula AIDA (Atenção, Interesse, Desejo, Ação) e inclua um CTA claro direcionando para o site.",
+  "assertions": [
+    {
+      "name": "Estrutura AIDA identificável",
+      "type": "text",
+      "text": "Verificar se a copy adota seções ou fluxos focados em Atenção, Interesse, Desejo e Ação"
+    },
+    {
+      "name": "Gancho de atenção forte na abertura",
+      "type": "text",
+      "text": "Verificar se a primeira frase é um gancho intrigante focado no público-alvo"
+    },
+    {
+      "name": "Presença de chamada de ação explícita",
+      "type": "text",
+      "text": "Verificar se a copy termina com uma instrução clara para clicar ou se inscrever"
+    }
+  ]
+}

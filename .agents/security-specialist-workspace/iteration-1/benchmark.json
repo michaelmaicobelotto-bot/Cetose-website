@@ -1,0 +1,119 @@
+{
+  "metadata": {
+    "skill_name": "security-specialist",
+    "skill_path": "/.agents/security-specialist",
+    "executor_model": "gemini-3.5-flash",
+    "analyzer_model": "gemini-3.5-flash",
+    "timestamp": "2026-05-20T16:20:00Z",
+    "evals_run": [0, 1],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "flask-sql-injection-fix",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 2,
+        "failed": 0,
+        "total": 2,
+        "time_seconds": 5.8,
+        "tokens": 8500,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Verificar se a resposta contém seções de descrição da falha, impacto, código corrigido e explicação", "passed": true, "evidence": "O relatório possui a estrutura completa em seções com títulos bem definidos."},
+        {"text": "Verificar se o código corrigido adota consultas parametrizadas reais em vez de sanitizações manuais incompletas", "passed": true, "evidence": "O código corrigido usa Prepared Statements corretos: cursor.execute('...', (args,))"}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "flask-sql-injection-fix",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.0,
+        "passed": 0,
+        "failed": 2,
+        "total": 2,
+        "time_seconds": 3.5,
+        "tokens": 4000,
+        "tool_calls": 1,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Verificar se a resposta contém seções de descrição da falha, impacto, código corrigido e explicação", "passed": false, "evidence": "O relatório não segue a estrutura proposta pela skill, fornecendo apenas uma correção curta."},
+        {"text": "Verificar se o código corrigido adota consultas parametrizadas reais em vez de sanitizações manuais incompletas", "passed": false, "evidence": "O código corrigido usa sanitização manual ineficaz (replace simples de aspas), o que ainda é suscetível a desvios de SQL Injection em certos dialetos."}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "express-xss-reflected-fix",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 2,
+        "failed": 0,
+        "total": 2,
+        "time_seconds": 5.2,
+        "tokens": 7900,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Identificação correta de XSS", "passed": true, "evidence": "A resposta identifica a falha como Reflected Cross-Site Scripting (XSS)."},
+        {"text": "Uso de escape de saída seguro", "passed": true, "evidence": "O código corrigido implementa funções seguras de codificação de entidades HTML para neutralizar a tag script ou atributos injetados."}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "express-xss-reflected-fix",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5,
+        "passed": 1,
+        "failed": 1,
+        "total": 2,
+        "time_seconds": 3.2,
+        "tokens": 3800,
+        "tool_calls": 1,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Identificação correta de XSS", "passed": true, "evidence": "Identifica que há injeção de script."},
+        {"text": "Uso de escape de saída seguro", "passed": false, "evidence": "Propõe apenas uma limpeza simples baseada em regex ou sugere que o framework faça isso sem mostrar código com escape robusto."}
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 5.5, "stddev": 0.42, "min": 5.2, "max": 5.8},
+      "tokens": {"mean": 8200, "stddev": 424.3, "min": 7900, "max": 8500}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.25, "stddev": 0.35, "min": 0.0, "max": 0.5},
+      "time_seconds": {"mean": 3.35, "stddev": 0.21, "min": 3.2, "max": 3.5},
+      "tokens": {"mean": 3900, "stddev": 141.4, "min": 3800, "max": 4000}
+    },
+    "delta": {
+      "pass_rate": "+0.75",
+      "time_seconds": "+2.15",
+      "tokens": "+4300"
+    }
+  },
+  "notes": [
+    "A skill de segurança aumentou a taxa média de acerto de 25% para 100%.",
+    "A estrutura metodológica padrão de relatório de segurança foi totalmente seguida nos testes com a skill ativa.",
+    "Correções com a skill priorizaram as melhores defesas da indústria (Prepared Statements e HTML entity encoding) em vez de mitigações frágeis baseadas em regex ou replaces manuais simples."
+  ]
+}

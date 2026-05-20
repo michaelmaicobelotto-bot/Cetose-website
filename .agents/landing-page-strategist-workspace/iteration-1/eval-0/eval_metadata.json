@@ -1,0 +1,22 @@
+{
+  "eval_id": 0,
+  "eval_name": "cetose-consciente-landing-page",
+  "prompt": "Escreva a estrutura e a copy completa de uma Landing Page para um e-book gratuito intitulado 'Cetose Consciente', voltado para emagrecimento saudável. Quero que a copy use o método PAS (Problema, Agitação, Solução) e que a página adote uma estética Dark-Emerald premium (tema escuro com detalhes em verde-esmeralda e glassmorphism).",
+  "assertions": [
+    {
+      "name": "Um unico elemento H1",
+      "type": "script",
+      "text": "Verificar se há exatamente um elemento h1 no arquivo HTML"
+    },
+    {
+      "name": "Presenca da estrutura PAS",
+      "type": "text",
+      "text": "Verificar se as seções abordam o Problema, Agitação e Solução"
+    },
+    {
+      "name": "IDs exclusivos nos links e botoes",
+      "type": "text",
+      "text": "Verificar se os elementos de conversão possuem IDs específicos exclusivos"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "expectations": [
+    {
+      "text": "Verificar se há exatamente um elemento h1 no arquivo HTML",
+      "passed": true,
+      "evidence": "Contém apenas um elemento h1 na seção hero."
+    },
+    {
+      "text": "Verificar se as seções abordam o Problema, Agitação e Solução",
+      "passed": true,
+      "evidence": "A seção #section-dor-solucao usa a estrutura PAS perfeitamente."
+    },
+    {
+      "text": "Verificar se os elementos de conversão possuem IDs específicos exclusivos",
+      "passed": true,
+      "evidence": "Todos os CTAs e links possuem IDs como #cta-hero-download e #link-politica."
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "failed": 0,
+    "total": 3,
+    "pass_rate": 1.0
+  },
+  "timing": {
+    "total_duration_seconds": 12.45
+  }
+}

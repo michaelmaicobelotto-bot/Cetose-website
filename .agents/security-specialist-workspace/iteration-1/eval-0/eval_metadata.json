@@ -1,0 +1,17 @@
+{
+  "eval_id": 0,
+  "eval_name": "flask-sql-injection-fix",
+  "prompt": "Audite o código Python Flask a seguir e corrija vulnerabilidades de injeção:\n\n```python\n@app.route('/pesquisa')\ndef pesquisa():\n    termo = request.args.get('q')\n    cursor = db.cursor()\n    cursor.execute(\"SELECT * FROM produtos WHERE nome LIKE '%\" + termo + \"%'\")\n    return str(cursor.fetchall())\n```",
+  "assertions": [
+    {
+      "name": "Estrutura do relatório completa",
+      "type": "text",
+      "text": "Verificar se a resposta contém seções de descrição da falha, impacto, código corrigido e explicação"
+    },
+    {
+      "name": "Uso de Prepared Statements",
+      "type": "text",
+      "text": "Verificar se o código corrigido adota consultas parametrizadas reais em vez de sanitizações manuais incompletas"
+    }
+  ]
+}

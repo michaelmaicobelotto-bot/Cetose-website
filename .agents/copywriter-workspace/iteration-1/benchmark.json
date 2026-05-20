@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "skill_name": "copywriter",
+    "skill_path": "/.agents/copywriter",
+    "executor_model": "gemini-3.5-flash",
+    "analyzer_model": "gemini-3.5-flash",
+    "timestamp": "2026-05-20T16:19:00Z",
+    "evals_run": [0, 1],
+    "runs_per_configuration": 1
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "eval_name": "anuncio-oratoria-executiva",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 6.2,
+        "tokens": 7800,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Verificar se a copy adota seções ou fluxos focados em Atenção, Interesse, Desejo e Ação", "passed": true, "evidence": "O texto está expressamente estruturado com as fases AIDA em sequência lógica."},
+        {"text": "Verificar se a primeira frase é um gancho intrigante focado no público-alvo", "passed": true, "evidence": "A frase de abertura ('O maior erro de um executável...') quebra o padrão de forma brilhante."},
+        {"text": "Verificar se a copy termina com uma instrução clara para clicar ou se inscrever", "passed": true, "evidence": "O CTA direciona para 'Quero Garantir Minha Inscrição'."}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "eval_name": "anuncio-oratoria-executiva",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "passed": 1,
+        "failed": 2,
+        "total": 3,
+        "time_seconds": 4.1,
+        "tokens": 4200,
+        "tool_calls": 1,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Verificar se a copy adota seções ou fluxos focados em Atenção, Interesse, Desejo e Ação", "passed": false, "evidence": "O texto apenas lista informações secas sobre o curso sem a estruturação persuasiva AIDA."},
+        {"text": "Verificar se a primeira frase é um gancho intrigante focado no público-alvo", "passed": false, "evidence": "A abertura é genérica: 'Se você quer falar melhor em público...'"},
+        {"text": "Verificar se a copy termina com uma instrução clara para clicar ou se inscrever", "passed": true, "evidence": "Termina sugerindo conferir o site."}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "email-culinaria-iniciante",
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 3,
+        "failed": 0,
+        "total": 3,
+        "time_seconds": 5.4,
+        "tokens": 6500,
+        "tool_calls": 2,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Verificar uso da estrutura PAS", "passed": true, "evidence": "O e-mail estabelece claramente a dor de errar receitas, agita o desperdício de ingredientes e apresenta o curso como solução."},
+        {"text": "Parágrafos curtos e leitura fluida", "passed": true, "evidence": "A copy possui blocos de texto curtos, com no máximo 3 linhas por parágrafo."},
+        {"text": "Presença de P.S. no fechamento", "passed": true, "evidence": "Contém um P.S. claro reforçando a garantia incondicional e o link."}
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "eval_name": "email-culinaria-iniciante",
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.33,
+        "passed": 1,
+        "failed": 2,
+        "total": 3,
+        "time_seconds": 3.8,
+        "tokens": 3900,
+        "tool_calls": 1,
+        "errors": 0
+      },
+      "expectations": [
+        {"text": "Verificar uso da estrutura PAS", "passed": false, "evidence": "O e-mail é apenas descritivo sobre o que há no curso sem focar na dor do leitor."},
+        {"text": "Parágrafos curtos e leitura fluida", "passed": true, "evidence": "A estrutura de parágrafos é razoável."},
+        {"text": "Presença de P.S. no fechamento", "passed": false, "evidence": "Não contém a assinatura P.S. de reforço."}
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {"mean": 1.0, "stddev": 0.0, "min": 1.0, "max": 1.0},
+      "time_seconds": {"mean": 5.8, "stddev": 0.56, "min": 5.4, "max": 6.2},
+      "tokens": {"mean": 7150, "stddev": 919.2, "min": 6500, "max": 7800}
+    },
+    "without_skill": {
+      "pass_rate": {"mean": 0.33, "stddev": 0.0, "min": 0.33, "max": 0.33},
+      "time_seconds": {"mean": 3.95, "stddev": 0.21, "min": 3.8, "max": 4.1},
+      "tokens": {"mean": 4050, "stddev": 141.4, "min": 3900, "max": 4200}
+    },
+    "delta": {
+      "pass_rate": "+0.67",
+      "time_seconds": "+1.85",
+      "tokens": "+3100"
+    }
+  },
+  "notes": [
+    "A skill aumentou a taxa de aprovação de 33% para 100% nos testes de copywriting.",
+    "O modelo passou a adotar ganchos e fórmulas de copy persuasiva (AIDA/PAS) de forma sistemática.",
+    "Os e-mails adotaram parágrafos curtos e uso de P.S. obrigatório com reforço de garantia."
+  ]
+}

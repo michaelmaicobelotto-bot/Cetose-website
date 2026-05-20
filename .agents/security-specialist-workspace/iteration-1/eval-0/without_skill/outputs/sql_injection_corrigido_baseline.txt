@@ -1,0 +1,13 @@
+Aqui está o código corrigido para evitar o erro de banco:
+
+```python
+@app.route('/pesquisa')
+def pesquisa():
+    termo = request.args.get('q')
+    # Sanitiza removendo aspas simples para segurança simples
+    termo_limpo = termo.replace("'", "")
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM produtos WHERE nome LIKE '%" + termo_limpo + "%'")
+    return str(cursor.fetchall())
+```
+Apenas removemos as aspas do termo de busca.

@@ -1,0 +1,23 @@
+{
+  "expectations": [
+    {
+      "text": "Verificar se a resposta contém seções de descrição da falha, impacto, código corrigido e explicação",
+      "passed": true,
+      "evidence": "O relatório possui a estrutura completa em seções com títulos bem definidos."
+    },
+    {
+      "text": "Verificar se o código corrigido adota consultas parametrizadas reais em vez de sanitizações manuais incompletas",
+      "passed": true,
+      "evidence": "O código corrigido usa Prepared Statements corretos: cursor.execute('...', (args,))"
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 0,
+    "total": 2,
+    "pass_rate": 1.0
+  },
+  "timing": {
+    "total_duration_seconds": 5.8
+  }
+}

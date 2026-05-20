@@ -1,0 +1,17 @@
+{
+  "eval_id": 1,
+  "eval_name": "antes-depois-fitness-section",
+  "prompt": "Crie uma seção de Antes e Depois (com duas colunas simétricas) para uma Landing Page de um programa de treinamento físico. O estilo deve ter um layout limpo, contendo a história de transformação de dois alunos fictícios com depoimento curto, dados de peso perdidos e status de transformação.",
+  "assertions": [
+    {
+      "name": "Estrutura de duas colunas",
+      "type": "text",
+      "text": "Verificar se há representação de duas colunas para comparação de antes e depois"
+    },
+    {
+      "name": "Dados de transformacao inclusos",
+      "type": "text",
+      "text": "Verificar se inclui depoimentos curtos e métricas de perda de peso"
+    }
+  ]
+}

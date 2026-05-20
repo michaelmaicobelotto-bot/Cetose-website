@@ -1,0 +1,28 @@
+{
+  "expectations": [
+    {
+      "text": "Verificar se há exatamente um elemento h1 no arquivo HTML",
+      "passed": false,
+      "evidence": "O arquivo contém dois elementos H1: um no cabeçalho e outro na seção de conteúdo."
+    },
+    {
+      "text": "Verificar se as seções abordam o Problema, Agitação e Solução",
+      "passed": true,
+      "evidence": "O texto menciona de forma simplificada o problema e a solução."
+    },
+    {
+      "text": "Verificar se os elementos de conversão possuem IDs específicos exclusivos",
+      "passed": false,
+      "evidence": "O link de CTA não possui atributo ID."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 2,
+    "total": 3,
+    "pass_rate": 0.33
+  },
+  "timing": {
+    "total_duration_seconds": 9.4
+  }
+}
