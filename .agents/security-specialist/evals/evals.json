@@ -1,0 +1,17 @@
+{
+  "skill_name": "security-specialist",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Audite o código Python Flask a seguir e corrija vulnerabilidades de injeção:\n\n```python\n@app.route('/pesquisa')\ndef pesquisa():\n    termo = request.args.get('q')\n    cursor = db.cursor()\n    cursor.execute(\"SELECT * FROM produtos WHERE nome LIKE '%\" + termo + \"%'\")\n    return str(cursor.fetchall())\n```",
+      "expected_output": "Uma resposta estruturada que aponte a falha de injeção de SQL na concatenação da query, indique o impacto crítico e forneça o código corrigido utilizando Prepared Statements com tuplas de argumentos, como `cursor.execute(\"SELECT * FROM produtos WHERE nome LIKE ?\", ('%' + termo + '%',))`.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "Identifique a vulnerabilidade de segurança presente neste endpoint Express.js e proponha a correção:\n\n```javascript\napp.get('/boas-vindas', (req, res) => {\n  const nome = req.query.nome;\n  res.send('<h1>Bem-vindo, ' + nome + '!</h1>');\n});\n```",
+      "expected_output": "Um relatório apontando que o endpoint é vulnerável a Reflected Cross-Site Scripting (XSS) ao concatenar diretamente o parâmetro sem escapar ou codificar, e fornecendo a correção adequada utilizando mecanismos de escape (como codificadores de entidades HTML) ou usando frameworks de renderização adequados.",
+      "files": []
+    }
+  ]
+}

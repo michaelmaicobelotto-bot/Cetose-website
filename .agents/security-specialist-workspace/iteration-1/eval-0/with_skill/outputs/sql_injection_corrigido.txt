@@ -1,0 +1,18 @@
+### 1. Descrição da Falha: SQL Injection (Injeção de SQL)
+A função do Flask concatena o parâmetro de pesquisa `termo` diretamente na query SQL (`"SELECT * FROM produtos WHERE nome LIKE '%" + termo + "%'"`). Isso permite que um atacante feche a aspa da string e insira comandos SQL adicionais arbitrários (por exemplo, `%' UNION SELECT * FROM usuarios; --`).
+
+* **Impacto**: Crítico. Permite roubo de dados, bypass de autenticação e possível destruição/alteração do banco de dados.
+
+### 2. Código Corrigido
+```python
+@app.route('/pesquisa')
+def pesquisa():
+    termo = request.args.get('q')
+    cursor = db.cursor()
+    # Usando Prepared Statements (Consultas Parametrizadas)
+    cursor.execute("SELECT * FROM produtos WHERE nome LIKE ?", ('%' + termo + '%',))
+    return str(cursor.fetchall())
+```
+
+### 3. Explicação da Mudança
+Ao usar o marcador de posição `?` (ou `%s` dependendo do driver do banco de dados), a string é passada em um argumento separado. O driver SQL trata o dado inserido estritamente como um valor literal e garante que ele seja devidamente escapado antes de rodar no motor do banco de dados, neutralizando qualquer tentativa de injeção.

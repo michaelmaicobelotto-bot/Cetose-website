@@ -1,0 +1,17 @@
+{
+  "skill_name": "copywriter",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Escreva um anúncio de Facebook Ads persuasivo para um curso de oratória e comunicação para executivos. Use a fórmula AIDA (Atenção, Interesse, Desejo, Ação) e inclua um CTA claro direcionando para o site.",
+      "expected_output": "Um anúncio bem estruturado que capture a atenção com um gancho forte, construa interesse com dados ou cenários de executivos, gere desejo destacando os benefícios (como liderança e promoções) e termine com uma chamada de ação (CTA) explícita.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "Escreva um e-mail de vendas direta para um curso online de culinária para iniciantes. A copy deve usar o método PAS (Problema, Agitação, Solução) e terminar com um P.S. destacando a garantia de satisfação de 7 dias.",
+      "expected_output": "Um e-mail de vendas com assunto chamativo, parágrafos curtos, descrição do problema de cozinhar sem prática, agitação desse problema, apresentação do curso como solução e um P.S. claro reforçando a garantia incondicional.",
+      "files": []
+    }
+  ]
+}
