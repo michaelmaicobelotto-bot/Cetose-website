@@ -1,7 +1,7 @@
-**# Cetose Consciente — Documentação do Projeto
+# Cetose Consciente — Documentação do Projeto
 
 > Repositório: https://github.com/michaelmaicobelotto-bot/Cetose-website
-> Última atualização: 2026-05-20
+> Última atualização: 2026-05-22
 
 ---
 
@@ -185,18 +185,40 @@ lucide.createIcons();
 ### 🏁 Varredura de Estratégia de Landing Page (`landing-page-strategist`)
 - [ ] Verificar se o `index.html` adota a hierarquia correta de headers (um único H1 por página)
 - [ ] Verificar se todos os botões de CTA possuem IDs únicos para rastreamento analítico
-- [ ] Auditar a seção "Antes e Depois" quanto ao layout de 2 colunas recomendado pela skill
+- [x] Auditar a seção "Antes e Depois" — layout de 3 colunas (grid) corrigido e funcional ✅
 - [ ] Verificar a adequação do design à paleta Dark-Emerald e aos padrões de glassmorphism
 - [ ] Revisar a densidade de informação de cada seção — garantir que cada bloco tenha UMA única mensagem central
+
+### 🖼️ Imagens — Status Atual
+- [x] Imagens de depoimentos (Maria, João, Ana) hospedadas em `assets/img/` ✅
+- [x] Caminhos no `index.html` apontam para `assets/img/` (caminhos relativos locais) ✅
+- [ ] Remover badges "ANTES" / "DEPOIS" das imagens (edição de imagem pendente)
+- [ ] Versionar as imagens editadas e subir ao repositório
 
 ---
 
 ## 6. Histórico de Commits (Git)
 
-| Data | Mensagem | Autoria |
+| Data | Hash | Mensagem | Autoria |
+| :--- | :--- | :--- | :--- |
+| 2026-05-22 | `9c5009b` | feat: URLs Cloudinary atualizadas + estrutura HTML dos cards corrigida | Antigravity AI |
+| 2026-05-22 | `0cc7924` | feat: atualiza URLs das imagens para Cloudinary e corrige secao dos depoimentos | Antigravity AI |
+| 2026-05-21 | `7f7d436` | fix cards layout | Michael Belotto |
+| 2026-05-21 | `a6fb543` | fix ana layout | Michael Belotto |
+| 2026-05-21 | `ccbc70e` | ana corrigida | Michael Belotto |
+| 2026-05-21 | `022425e` | fix ana completo | Michael Belotto |
+| 2026-05-18 | — | Final1 | Michael Belotto |
+| 2026-05-18 | — | Final | Michael Belotto |
+| 2026-05-18 | — | footer | Michael Belotto |
+| 2026-05-15 | — | Partes2 | Michael Belotto |
+| 2026-05-15 | — | Inicio de Parte2 | Michael Belotto |
+
+---
+
+## 7. Decisões de Arquitetura Relevantes
+
+| Data | Decisão | Motivo |
 | :--- | :--- | :--- |
-| 2026-05-18 | Final1 | Michael Belotto |
-| 2026-05-18 | Final | Michael Belotto |
-| 2026-05-18 | footer | Michael Belotto |
-| 2026-05-15 | Partes2 | Michael Belotto |
-| 2026-05-15 | Inicio de Parte2 | Michael Belotto |
+| 2026-05-22 | Imagens servidas de `assets/img/` (local) em vez do Cloudinary | Manter controle total dos assets no repositório e simplificar o deploy via GitHub Pages |
+| 2026-05-22 | Estrutura do grid de depoimentos padronizada (3 cards idênticos) | Corrigir bug de render causado por aspas não fechadas no atributo `alt` do card do João |
+| 2026-05-21 | Seção `#resultados` reescrita do zero | Card da Ana tinha divs desalinhadas e indentação incorreta em relação ao padrão dos cards da Maria e João |
