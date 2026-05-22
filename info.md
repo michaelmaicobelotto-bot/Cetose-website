@@ -1,4 +1,4 @@
-# Cetose Consciente — Documentação do Projeto
+**# Cetose Consciente — Documentação do Projeto
 
 > Repositório: https://github.com/michaelmaicobelotto-bot/Cetose-website
 > Última atualização: 2026-05-20
