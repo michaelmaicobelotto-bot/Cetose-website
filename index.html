@@ -2979,6 +2979,81 @@
             border-color: rgba(52, 211, 153, 1);
             box-shadow: 0 0 30px rgba(52, 211, 153, 0.9);
         }
+
+        /* ─── Responsividade Mobile: apenas para telas < 640px ─── */
+        @media (max-width: 639px) {
+            .ref-play-widget {
+                min-width: 0 !important;
+                max-width: 88vw !important;
+                width: 88vw;
+                padding: 14px 20px;
+                gap: 16px;
+                border-radius: 16px;
+            }
+
+            .ref-play-widget > .absolute {
+                border-radius: 16px;
+            }
+
+            .ref-play-circle {
+                width: 56px !important;
+                height: 56px !important;
+                flex-shrink: 0;
+            }
+
+            .ref-play-circle svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            /* Nome do produto */
+            .ref-play-widget .flex-col span:first-of-type,
+            .ref-play-widget [style*="1.35rem"] {
+                font-size: 1.05rem !important;
+            }
+
+            /* CTA "Clique para Assistir" */
+            .ref-play-widget [style*="0.75rem"] {
+                font-size: 0.65rem !important;
+                letter-spacing: 0.14em !important;
+            }
+
+            /* Mini grid logo */
+            .ref-play-widget .w-7 {
+                width: 22px;
+                height: 22px;
+            }
+
+            .ref-play-widget .gap-3 {
+                gap: 8px;
+            }
+        }
+
+        /* ─── Tablet: 640px – 767px ─── */
+        @media (min-width: 640px) and (max-width: 767px) {
+            .ref-play-widget {
+                min-width: 0 !important;
+                max-width: 82vw !important;
+                width: 82vw;
+                padding: 16px 24px;
+                gap: 18px;
+                border-radius: 18px;
+            }
+
+            .ref-play-circle {
+                width: 64px !important;
+                height: 64px !important;
+            }
+
+            .ref-play-circle svg {
+                width: 26px;
+                height: 26px;
+            }
+
+            .ref-play-widget [style*="1.35rem"] {
+                font-size: 1.2rem !important;
+            }
+        }
     </style>
 
     <script>
