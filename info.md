@@ -1,7 +1,7 @@
 # Cetose Consciente — Documentação do Projeto
 
 > Repositório: https://github.com/michaelmaicobelotto-bot/Cetose-website
-> Última atualização: 2026-05-22
+> Última atualização: 2026-07-04
 
 ---
 
@@ -9,7 +9,7 @@
 
 ```
 Estudo 1/
-├── index.html              # Página principal da Landing Page (3.309 linhas)
+├── index.html              # Página principal da Landing Page (1.514 linhas)
 ├── info.md                 # Este arquivo de documentação
 │
 ├── assets/
@@ -201,6 +201,8 @@ lucide.createIcons();
 
 | Data | Hash | Mensagem | Autoria |
 | :--- | :--- | :--- | :--- |
+| 2026-06-27 | `4744257` | ajuste de valores 4 | Michael Belotto |
+| 2026-06-27 | `a5b968a` | ajuste de valores 3 | Michael Belotto |
 | 2026-05-22 | `9c5009b` | feat: URLs Cloudinary atualizadas + estrutura HTML dos cards corrigida | Antigravity AI |
 | 2026-05-22 | `0cc7924` | feat: atualiza URLs das imagens para Cloudinary e corrige secao dos depoimentos | Antigravity AI |
 | 2026-05-21 | `7f7d436` | fix cards layout | Michael Belotto |
@@ -219,6 +221,68 @@ lucide.createIcons();
 
 | Data | Decisão | Motivo |
 | :--- | :--- | :--- |
+| 2026-07-04 | Nenhuma alteração aplicada ao `index.html` nesta sessão | Sessão dedicada exclusivamente a mapeamento e pesquisa visual |
 | 2026-05-22 | Imagens servidas de `assets/img/` (local) em vez do Cloudinary | Manter controle total dos assets no repositório e simplificar o deploy via GitHub Pages |
 | 2026-05-22 | Estrutura do grid de depoimentos padronizada (3 cards idênticos) | Corrigir bug de render causado por aspas não fechadas no atributo `alt` do card do João |
 | 2026-05-21 | Seção `#resultados` reescrita do zero | Card da Ana tinha divs desalinhadas e indentação incorreta em relação ao padrão dos cards da Maria e João |
+
+---
+
+## 8. Registro de Sessão — 2026-07-04
+
+### Objetivo da Sessão
+Iluminar a faixa de benefícios (seção `#animations`) localizada entre o vídeo (`#inicio`) e a seção "O Que a Ciência Diz" (`#science-fold`), sem alterar layout, espaçamentos, tipografia ou animações existentes.
+
+### Mapeamento de Seções Realizado
+
+| Ordem | ID da Seção | Descrição |
+| :--- | :--- | :--- |
+| 1 | `#inicio` | Hero + Video Player (Façade Pattern com PandaVideo) |
+| 2 | `#animations` | Faixa de marquee animada (Cetose, Consciente, Energia, Foco) |
+| 3 | `#science-fold` | "O Que a Ciência Diz" + Tabela Comparativa |
+| 4 | `#resultados` | Depoimentos e gráficos de barras ("Resultados Reais") |
+| 5 | `#oferta` | Seção de oferta e preço |
+| 6 | `#guarantee` | Garantia |
+
+### Análise da Seção `#animations` (alvo da iluminação)
+
+A seção `#animations` (linhas 743–797 do `index.html`) é uma **faixa horizontal de marquee** com as seguintes características atuais:
+
+- **Container:** `w-full py-20 border-t border-white/5 relative z-10 bg-black/60 overflow-hidden`
+- **Faixa interna:** `relative w-full py-6 border-y border-emerald-900/30 bg-emerald-950/20`
+- **Máscaras alpha:** gradientes laterais `from-black to-transparent` (esquerda e direita)
+- **Texto:** `text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0` (muito sutil, quase invisível)
+- **Ícones:** `text-[#10b981]/50` (opacidade 50%, verde esmeralda)
+- **Efeitos de glow existentes:** Nenhum — a seção é intencionalmente discreta/apagada
+
+### Classes CSS Relevantes Identificadas
+
+```css
+/* Efeito flashlight nos cards */
+.flashlight-card::before { ... radial-gradient com rgba(52, 211, 153, 0.08) ... }
+
+/* Glow verde base */
+.glow-green { box-shadow: 0 0 25px rgba(16, 185, 129, 0.6); }
+
+/* Identidade de cor do projeto */
+--emerald-500: #10b981
+--emerald-400: #34d399
+```
+
+### Plano de Iluminação (Pendente de Aplicação)
+
+**Alvo:** Seção `#animations` (linhas 743–797)
+
+**Mudanças planejadas (SOMENTE CSS inline via classes Tailwind/existentes):**
+
+1. **Background da seção:** `bg-black/60` → `bg-black/40` + adicionar radial glow verde central
+2. **Faixa interna:** `bg-emerald-950/20` → `bg-emerald-950/40` + intensificar `border-emerald-900/30` → `border-emerald-500/20`
+3. **Texto do marquee:** `from-white/10 to-white/0` → `from-white/30 to-white/5` (mais legível)
+4. **Ícones:** `text-[#10b981]/50` → `text-[#10b981]/80` (mais brilhantes)
+5. **Adicionar `drop-shadow`** nos ícones para simular glow pontual
+6. **Adicionar div de radial glow** centralizado atrás da faixa (pointer-events-none)
+
+### Status
+- [x] Sessão de mapeamento e análise concluída
+- [x] Servidor local iniciado (`http-server` na porta 8080)
+- [ ] **PRÓXIMA AÇÃO:** Aplicar as alterações de iluminação na seção `#animations` do `index.html`
