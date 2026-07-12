@@ -1,0 +1,44 @@
+@theme {
+  /* Cores do Projeto (Tema Cetose Consciente) */
+  --color-primary: #10b981;
+  --color-primary-50: #ecfdf5;
+  --color-primary-100: #d1fae5;
+  --color-primary-500: #10b981;
+  --color-primary-600: #059669;
+  --color-primary-700: #047857;
+
+  --color-secondary: #000000;
+  
+  --color-accent: #00d4aa;
+  --color-accent-glow: rgba(0, 212, 170, 0.15);
+
+  --color-background-dark: #0a0a0f;
+  --color-foreground-dark: #f0f0f5;
+  --color-sidebar-bg: #0f0f1a;
+  --color-sidebar-border: #1e1e2e;
+  --color-card-bg: #12121f;
+  --color-card-border: #1e1e2e;
+  
+  /* Fontes Customizadas integradas com Next.js Fonts */
+  --font-sans: var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-manrope), 'Manrope', system-ui, -apple-system, sans-serif;
+
+  /* Tamanhos de Fonte */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  /* Breakpoints do tema */
+  --breakpoint-xs: 475px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}

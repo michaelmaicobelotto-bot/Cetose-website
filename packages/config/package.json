@@ -1,0 +1,15 @@
+{
+  "name": "@cetose/config",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Configurações compartilhadas do monorepo Cetose Consciente",
+  "exports": {
+    "./tsconfig": "./tsconfig.base.json",
+    "./tsconfig/*": "./tsconfig.*.json",
+    "./theme.css": "./theme.css"
+  },
+  "files": [
+    "tsconfig*.json",
+    "theme.css"
+  ]
+}
