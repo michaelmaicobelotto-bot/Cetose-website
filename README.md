@@ -105,7 +105,7 @@ A documentação completa está na pasta `/docs`:
 
 ### Fase 0: Fundação (Em Andamento)
 - [x] Estrutura do monorepo
-- [ ] Configuração Next.js
+- [x] Configuração Next.js (Landing & Web PWA)
 - [ ] Configuração TypeScript
 - [ ] Configuração Tailwind
 - [ ] Configuração Supabase
