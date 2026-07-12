@@ -1,7 +1,7 @@
 # Cetose Consciente — Documentação do Projeto
 
 > Repositório: https://github.com/michaelmaicobelotto-bot/Cetose-website
-> Última atualização: 2026-07-04
+> Última atualização: 2026-07-04 (Sessões: Iluminação Faixa, Headline Fix, Botão Play Neon, Responsividade Mobile)
 
 ---
 
@@ -201,6 +201,10 @@ lucide.createIcons();
 
 | Data | Hash | Mensagem | Autoria |
 | :--- | :--- | :--- | :--- |
+| 2026-07-04 | — | fix: lang pt-BR, headline inline-block, nav encoding, subtítulo corrigido | Antigravity AI |
+| 2026-07-04 | — | feat: botão play neon 1:1 referência (widget horizontal, pulsação, glow) | Antigravity AI |
+| 2026-07-04 | — | feat: responsividade mobile do widget de play (media queries isoladas) | Antigravity AI |
+| 2026-07-04 | — | feat: iluminação faixa #animations (glow radial, textos +35%, ícones +80%) | Antigravity AI |
 | 2026-06-27 | `4744257` | ajuste de valores 4 | Michael Belotto |
 | 2026-06-27 | `a5b968a` | ajuste de valores 3 | Michael Belotto |
 | 2026-05-22 | `9c5009b` | feat: URLs Cloudinary atualizadas + estrutura HTML dos cards corrigida | Antigravity AI |
@@ -221,19 +225,27 @@ lucide.createIcons();
 
 | Data | Decisão | Motivo |
 | :--- | :--- | :--- |
-| 2026-07-04 | Nenhuma alteração aplicada ao `index.html` nesta sessão | Sessão dedicada exclusivamente a mapeamento e pesquisa visual |
+| 2026-07-04 | Botão de play substituído por widget horizontal neon (CSS puro, sem JS) | Fidelidade 1:1 à imagem de referência fornecida; efeito mais premium e tecnológico |
+| 2026-07-04 | Media queries mobile isoladas com `max-width: 639px` e `max-width: 767px` | Garantir que o design desktop aprovado não fosse alterado ao adicionar responsividade |
+| 2026-07-04 | `lang="en"` → `lang="pt-BR"` na tag `<html>` | Browsers traduziam a página por estar marcada como inglês, corrompendo acentos (`INÍCIO` → `INÃ­CIO`) |
+| 2026-07-04 | Iluminação da faixa `#animations` via PowerShell replace (não editor) | Evitar corrupção de encoding ao editar via ferramentas de texto padrão no Windows |
 | 2026-05-22 | Imagens servidas de `assets/img/` (local) em vez do Cloudinary | Manter controle total dos assets no repositório e simplificar o deploy via GitHub Pages |
 | 2026-05-22 | Estrutura do grid de depoimentos padronizada (3 cards idênticos) | Corrigir bug de render causado por aspas não fechadas no atributo `alt` do card do João |
 | 2026-05-21 | Seção `#resultados` reescrita do zero | Card da Ana tinha divs desalinhadas e indentação incorreta em relação ao padrão dos cards da Maria e João |
 
 ---
 
-## 8. Registro de Sessão — 2026-07-04
+## 8. Registro de Sessões — 2026-07-04
 
-### Objetivo da Sessão
+---
+
+### 🔦 Sessão A — Iluminação da Faixa `#animations`
+**Horário:** ~11h00–11h50 (BRT) | **Conversas:** `fce6930e`, `c260e5e1`
+
+#### Objetivo
 Iluminar a faixa de benefícios (seção `#animations`) localizada entre o vídeo (`#inicio`) e a seção "O Que a Ciência Diz" (`#science-fold`), sem alterar layout, espaçamentos, tipografia ou animações existentes.
 
-### Mapeamento de Seções Realizado
+#### Mapeamento de Seções
 
 | Ordem | ID da Seção | Descrição |
 | :--- | :--- | :--- |
@@ -244,45 +256,142 @@ Iluminar a faixa de benefícios (seção `#animations`) localizada entre o víde
 | 5 | `#oferta` | Seção de oferta e preço |
 | 6 | `#guarantee` | Garantia |
 
-### Análise da Seção `#animations` (alvo da iluminação)
+#### Alterações Aplicadas no `index.html`
 
-A seção `#animations` (linhas 743–797 do `index.html`) é uma **faixa horizontal de marquee** com as seguintes características atuais:
+| Elemento | Antes | Depois |
+| :--- | :--- | :--- |
+| Fundo da seção `#animations` | `bg-black/60` | `bg-black/40` |
+| Faixa interna | `bg-emerald-950/20` | `bg-emerald-950/40` |
+| Borda da faixa | `border-emerald-900/30` | `border-emerald-500/20` |
+| Glow radial central | ❌ inexistente | ✅ `radial-gradient ellipse 70%` verde |
+| Textos do marquee | `from-white/10 to-white/0` | `from-white/35 to-white/5` |
+| Ícones | `text-[#10b981]/50` | `text-[#10b981]/80` + `drop-shadow` verde 6px |
 
-- **Container:** `w-full py-20 border-t border-white/5 relative z-10 bg-black/60 overflow-hidden`
-- **Faixa interna:** `relative w-full py-6 border-y border-emerald-900/30 bg-emerald-950/20`
-- **Máscaras alpha:** gradientes laterais `from-black to-transparent` (esquerda e direita)
-- **Texto:** `text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-white/0` (muito sutil, quase invisível)
-- **Ícones:** `text-[#10b981]/50` (opacidade 50%, verde esmeralda)
-- **Efeitos de glow existentes:** Nenhum — a seção é intencionalmente discreta/apagada
+> **Nota técnica:** O PowerShell corrompeu o encoding do arquivo na primeira tentativa. O arquivo foi restaurado via `git checkout index.html` e as edições foram reaplicadas corretamente. O método de edição via PowerShell foi descartado para substituições com acentos.
 
-### Classes CSS Relevantes Identificadas
+#### Status
+- [x] Mapeamento das seções concluído
+- [x] Servidor local `http-server` na porta 8080 iniciado
+- [x] Iluminação aplicada na faixa `#animations`
+- [x] Screenshot antes/depois capturado via browser subagent
+
+---
+
+### 🔤 Sessão B — Correção de Headline, Encoding e Erros Tipográficos
+**Horário:** ~13h25–13h45 (BRT) | **Conversa:** `8e80b45b`
+
+#### Objetivo
+Corrigir problemas de exibição do título e subtítulo da página, causados por tradução automática do browser (encoding incorreto) e erros de digitação em classes CSS.
+
+#### Problema Identificado
+A tag `<html lang="en">` fazia o Google Chrome tentar traduzir automaticamente a página do inglês para o português, corrompendo os caracteres acentuados:
+- Menu: `INÍCIO` aparecia como `INÃ­CIO`
+- Título principal: letras embaralhadas
+- Subtítulo: quebras de linha erradas
+
+Além disso, foi identificado o typo `inline-blox` (deveria ser `inline-block`) na classe CSS do título, causando falha de renderização.
+
+#### Correções Aplicadas no `index.html`
+
+| Arquivo | Linha | Problema | Correção |
+| :--- | :--- | :--- | :--- |
+| `index.html` | 2 | `lang="en"` | `lang="pt-BR"` |
+| `index.html` | ~640 | Classe `inline-blox` | `inline-block` |
+| `index.html` | ~616 | Link nav `INÍCIO` com encoding corrompido | Restaurado corretamente |
+| `index.html` | ~615 | Link nav `VDEO` → `VÍDEO` | Corrigido |
+| `index.html` | ~3087 | Quebra de linha indevida no subtítulo | Restaurada linha contínua |
+
+#### Status
+- [x] Causa raiz identificada (lang="en" + typo CSS)
+- [x] Tag `<html>` corrigida para `pt-BR`
+- [x] Classes CSS do título corrigidas
+- [x] Itens do menu de navegação corrigidos
+- [x] Subtítulo restaurado sem quebras incorretas
+
+---
+
+### 🎬 Sessão C — Botão de Play Neon (Referência 1:1)
+**Horário:** ~13h40–14h15 (BRT) | **Conversa:** `8e80b45b`
+
+#### Objetivo
+Substituir o botão de play simples (círculo verde sólido) pelo widget de play premium inspirado na imagem de referência fornecida pelo usuário, com maior fidelidade possível.
+
+#### Widget de Play Implementado
+
+O novo botão é um **container horizontal arredondado** com:
+
+| Componente | Implementação |
+| :--- | :--- |
+| Formato | Container arredondado (`border-radius: 20px`), fundo escuro com gradiente |
+| Borda | Neon verde (`rgba(52, 211, 153, 0.8)`), espessura `1.5px` |
+| Glow externo | `box-shadow` animado 40px verde, animação `@keyframes widgetPulse` |
+| Círculo de play | Círculo escuro com aro neon `2.5px`, animação `@keyframes playCirclePulse` |
+| Ícone ▶ | SVG nativo (`solar:play-bold`), centralizado com ajuste óptico de 3px |
+| Mini-grid logotipo | Grid 2×2 com cores: verde `#10b981`, cinza médio, cinza escuro, branco |
+| Nome do produto | "Cetose Consciente" em Manrope Bold, tracking negativo |
+| Subtexto CTA | "CLIQUE PARA ASSISTIR" em Inter SemiBold, verde neon, tracking amplo |
+| Hover | Scale sutil + intensificação do glow do círculo |
+
+#### CSS Adicionado (no `<style>` do `<head>`)
+- `@keyframes widgetPulse` — pulsação suave do glow externo do widget
+- `@keyframes playCirclePulse` — pulsação independente do círculo de play
+- `.ref-play-widget` — estilos do container principal
+- `.ref-play-circle` — estilos do círculo de play com aro neon
+
+#### Localização no HTML
+- **CSS:** Bloco `<style>` no `<head>` (dentro do segundo bloco `<style>` do arquivo)
+- **HTML:** Substituição completa do `div#video-facade` (antigo botão simples)
+
+#### Status
+- [x] Análise da imagem de referência realizada
+- [x] CSS do widget criado com animações `widgetPulse` e `playCirclePulse`
+- [x] HTML do `#video-facade` substituído pelo widget 1:1
+- [x] Hover e interações implementados
+- [x] Funcionamento do player PandaVideo preservado
+
+---
+
+### 📱 Sessão D — Responsividade Mobile do Botão de Play
+**Horário:** ~14h13–14h15 (BRT) | **Conversa:** `8e80b45b`
+
+#### Objetivo
+Tornar o widget de play responsivo para mobile e tablet, sem alterar **absolutamente nada** do design desktop aprovado.
+
+#### Media Queries Adicionadas
 
 ```css
-/* Efeito flashlight nos cards */
-.flashlight-card::before { ... radial-gradient com rgba(52, 211, 153, 0.08) ... }
+/* Mobile: max-width: 639px */
+.ref-play-widget → min-width: 0; width: 88vw; padding: 14px 20px; border-radius: 16px
+.ref-play-circle → width/height: 56×56px (-30%); ícone ▶: 22×22px
+"Cetose Consciente" → font-size: 1.05rem
+Texto CTA → font-size: 0.65rem; letter-spacing: 0.14em
+Mini-grid → 22×22px
 
-/* Glow verde base */
-.glow-green { box-shadow: 0 0 25px rgba(16, 185, 129, 0.6); }
-
-/* Identidade de cor do projeto */
---emerald-500: #10b981
---emerald-400: #34d399
+/* Tablet: max-width: 767px */
+.ref-play-widget → 82vw
+.ref-play-circle → 64×64px; ícone ▶: 26×26px
+"Cetose Consciente" → 1.2rem
 ```
 
-### Plano de Iluminação (Pendente de Aplicação)
+#### Estratégia de Isolamento
+- Todas as regras desktop usam `min-width: 640px` implicitamente (sem media query = tamanho base)
+- Mobile usa `max-width: 639px` — nunca conflita com desktop
+- Tablet usa `max-width: 767px` — redução intermediária proporcional
+- Desktop `≥ 768px` → **nenhuma regra de media query** aplicada
 
-**Alvo:** Seção `#animations` (linhas 743–797)
+#### Status
+- [x] Desktop preservado 100% sem alterações
+- [x] Mobile (< 640px): widget em 88vw, proporções reduzidas ~30%
+- [x] Tablet (640–767px): redução intermediária aplicada
+- [x] Centralização e identidade visual preservadas
 
-**Mudanças planejadas (SOMENTE CSS inline via classes Tailwind/existentes):**
+---
 
-1. **Background da seção:** `bg-black/60` → `bg-black/40` + adicionar radial glow verde central
-2. **Faixa interna:** `bg-emerald-950/20` → `bg-emerald-950/40` + intensificar `border-emerald-900/30` → `border-emerald-500/20`
-3. **Texto do marquee:** `from-white/10 to-white/0` → `from-white/30 to-white/5` (mais legível)
-4. **Ícones:** `text-[#10b981]/50` → `text-[#10b981]/80` (mais brilhantes)
-5. **Adicionar `drop-shadow`** nos ícones para simular glow pontual
-6. **Adicionar div de radial glow** centralizado atrás da faixa (pointer-events-none)
+### ✅ Resumo Geral das Sessões de 2026-07-04
 
-### Status
-- [x] Sessão de mapeamento e análise concluída
-- [x] Servidor local iniciado (`http-server` na porta 8080)
-- [ ] **PRÓXIMA AÇÃO:** Aplicar as alterações de iluminação na seção `#animations` do `index.html`
+| Sessão | Realizado | Status |
+| :--- | :--- | :--- |
+| A — Iluminação `#animations` | Glow radial, textos +35%, ícones +80%, fundo mais claro | ✅ Concluído |
+| B — Correção Headline/Encoding | `lang="pt-BR"`, `inline-block`, nav corrigida, subtítulo restaurado | ✅ Concluído |
+| C — Botão Play Neon 1:1 | Widget horizontal premium com pulsação, glow e mini-logotipo | ✅ Concluído |
+| D — Responsividade Mobile | Media queries isoladas, design desktop intocado | ✅ Concluído |

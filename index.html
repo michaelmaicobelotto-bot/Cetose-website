@@ -2931,10 +2931,13 @@
 
         /* 1:1 Reference Play Widget Styles */
         @keyframes widgetPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 25px rgba(16, 185, 129, 0.2), inset 0 0 10px rgba(16, 185, 129, 0.1);
                 border-color: rgba(52, 211, 153, 0.4);
             }
+
             50% {
                 box-shadow: 0 0 35px rgba(16, 185, 129, 0.35), inset 0 0 15px rgba(16, 185, 129, 0.2);
                 border-color: rgba(52, 211, 153, 0.6);
@@ -2942,11 +2945,14 @@
         }
 
         @keyframes playCirclePulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 15px rgba(52, 211, 153, 0.4);
                 border-color: rgba(52, 211, 153, 0.7);
                 transform: scale(1);
             }
+
             50% {
                 box-shadow: 0 0 25px rgba(52, 211, 153, 0.7);
                 border-color: rgba(52, 211, 153, 1);
@@ -2991,7 +2997,7 @@
                 border-radius: 16px;
             }
 
-            .ref-play-widget > .absolute {
+            .ref-play-widget>.absolute {
                 border-radius: 16px;
             }
 
@@ -3251,10 +3257,10 @@
                             </div>
 
                             <!-- Círculo de Play -->
-                            <div class="ref-play-circle relative flex-shrink-0 w-20 h-20 rounded-full flex items-center justify-center">
+                            <div
+                                class="ref-play-circle relative flex-shrink-0 w-20 h-20 rounded-full flex items-center justify-center">
                                 <!-- Ícone ▶ centralizado com ajuste óptico -->
-                                <svg width="30" height="30" viewBox="0 0 24 24" fill="white"
-                                    style="margin-left: 3px;">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="white" style="margin-left: 3px;">
                                     <path d="M8 5v14l11-7z" />
                                 </svg>
                             </div>
