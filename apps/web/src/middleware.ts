@@ -38,7 +38,7 @@ export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
 
   // Lista de rotas protegidas que exigem login
-  const protectedRoutes = ["/dashboard", "/biblioteca", "/receitas", "/perfil", "/plano-alimentar"];
+  const protectedRoutes = ["/dashboard", "/biblioteca", "/receitas", "/perfil", "/plano-alimentar", "/ia-keto", "/configuracoes"];
   const isProtectedRoute = protectedRoutes.some((route) =>
     pathname.startsWith(route)
   );
@@ -69,6 +69,8 @@ export const config = {
     "/receitas/:path*",
     "/perfil/:path*",
     "/plano-alimentar/:path*",
+    "/ia-keto/:path*",
+    "/configuracoes/:path*",
     "/login",
     "/signup",
     "/forgot-password",
