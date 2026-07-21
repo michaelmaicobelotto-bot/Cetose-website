@@ -7,6 +7,7 @@ export interface ButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   loading?: boolean;
+  isLoading?: boolean;
   type?: "button" | "submit" | "reset";
   className?: string;
   id?: string;
@@ -18,11 +19,13 @@ export const Button: React.FC<ButtonProps> = ({
   size = "md",
   disabled = false,
   loading = false,
+  isLoading = false,
   type = "button",
   onClick,
   className = "",
   id,
 }) => {
+  const isCurrentlyLoading = loading || isLoading;
   const baseStyles =
     "inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
@@ -48,11 +51,11 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       id={id}
       type={type}
-      disabled={disabled || loading}
+      disabled={disabled || isCurrentlyLoading}
       onClick={onClick}
       className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
     >
-      {loading && (
+      {isCurrentlyLoading && (
         <svg
           className="animate-spin h-4 w-4"
           xmlns="http://www.w3.org/2000/svg"

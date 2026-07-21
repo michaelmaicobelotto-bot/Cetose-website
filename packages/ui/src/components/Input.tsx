@@ -7,7 +7,7 @@ export interface InputProps
   hint?: string;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
-  id: string;
+  id?: string;
 }
 
 export const Input: React.FC<InputProps> = ({
